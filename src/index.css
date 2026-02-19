@@ -1,0 +1,567 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Portfolio Design System */
+
+@layer base {
+  :root {
+    /* TK Logo-Matched Dark Theme - Deep Navy + Vermillion */
+    --background: 215 28% 7%;
+    /* Deep navy #0d1117 */
+    --foreground: 0 0% 100%;
+    /* White */
+
+    /* Card/Surface Colors */
+    --card: 215 22% 11%;
+    /* Lighter navy #161b22 */
+    --card-foreground: 0 0% 100%;
+    /* White */
+
+    /* Primary - Vermillion Orange (from logo) */
+    --primary: 14 100% 60%;
+    /* Vermillion #ff5c33 */
+    --primary-foreground: 0 0% 100%;
+    /* White for contrast on Vermillion */
+
+    /* Secondary */
+    --secondary: 215 22% 11%;
+    /* Lighter navy */
+    --secondary-foreground: 0 0% 100%;
+    /* White */
+
+    /* Muted */
+    --muted: 215 15% 18%;
+    /* Muted navy */
+    --muted-foreground: 215 10% 55%;
+    /* Gray #8b949e */
+
+    /* Border */
+    --border: 215 14% 22%;
+    /* Subtle border #30363d */
+    --input: 215 22% 11%;
+    --ring: 14 100% 60%;
+    /* Vermillion */
+
+    /* Container specific */
+    --container-bg: 215 22% 11%;
+    /* Lighter navy */
+    --container-border: 215 14% 22%;
+    /* Subtle border */
+
+    /* Radius - Sharper for geometric look */
+    --radius: 8px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    /* Dark mode theming - proper scrollbar/input colors */
+    color-scheme: dark;
+    /* Touch optimization - prevent double-tap zoom delay */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(248, 90, 62, 0.2);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* Focus States - Vercel Guidelines */
+  /* Use focus-visible to avoid focus ring on click */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Interactive elements get focus ring */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background rounded-sm;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    /* Prevent widow words in headings */
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Reduced Motion - Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+
+  /* Main Layout - TK Logo Dark Theme */
+  .app-container {
+    @apply min-h-screen relative;
+    background-color: hsl(var(--background));
+  }
+
+  /* Dark Container - Navy surface */
+  .dark-container {
+    @apply rounded-lg p-8 md:p-12 relative;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .dark-container h1,
+  .dark-container h2,
+  .dark-container h3,
+  .dark-container p {
+    @apply text-white;
+  }
+
+  .dark-container .text-muted-foreground {
+    color: hsl(0 0% 70%);
+  }
+
+  /* Grid Background Pattern */
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--container-border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--container-border)) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Staggered fade-in animations - per frontend-design skill */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .fade-in-1 {
+    animation-delay: 0.1s;
+  }
+
+  .fade-in-2 {
+    animation-delay: 0.2s;
+  }
+
+  .fade-in-3 {
+    animation-delay: 0.3s;
+  }
+
+  .fade-in-4 {
+    animation-delay: 0.4s;
+  }
+
+  .fade-in-5 {
+    animation-delay: 0.5s;
+  }
+
+  .main-card {
+    @apply bg-background w-full min-h-screen flex flex-col md:flex-row;
+  }
+
+  /* Sidebar - Clean & Professional */
+  .sidebar {
+    @apply w-full md:w-64 lg:w-72 flex-shrink-0 p-6 md:p-8 flex flex-col md:sticky md:top-0 md:h-screen border-b md:border-b-0 md:border-r border-border;
+  }
+
+  .sidebar-logo {
+    @apply w-14 h-14 md:w-16 md:h-16 mb-8;
+  }
+
+  .sidebar-nav {
+    @apply flex flex-row md:flex-col gap-1 mb-8;
+  }
+
+  .nav-link {
+    @apply px-4 py-2.5 text-sm font-medium text-muted-foreground rounded-lg transition-all duration-200 hover:text-foreground hover:bg-secondary;
+  }
+
+  .nav-link.active {
+    @apply text-foreground bg-secondary border border-border;
+  }
+
+  .sidebar-status {
+    @apply mt-auto space-y-4 text-sm hidden md:block pt-6 border-t border-border;
+  }
+
+  .status-item {
+    @apply flex items-center gap-2 text-muted-foreground;
+  }
+
+  .status-icon {
+    @apply w-4 h-4;
+  }
+
+  .status-link {
+    @apply text-primary hover:underline underline-offset-2;
+  }
+
+  /* Content Area */
+  .content-area {
+    @apply flex-1 p-6 md:p-10 lg:p-12 overflow-y-auto max-w-4xl;
+  }
+
+  /* Page Header - Professional Typography */
+  .page-title {
+    @apply text-3xl md:text-4xl font-semibold mb-2 tracking-tight;
+  }
+
+  .page-subtitle {
+    @apply text-lg text-primary/80 mb-8 font-normal;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-xl font-semibold mt-10 mb-4 tracking-tight;
+  }
+
+  /* Stats Badges */
+  .stats-row {
+    @apply flex flex-wrap gap-3 my-8;
+  }
+
+  .stat-badge {
+    @apply inline-flex items-center gap-2.5 px-5 py-2.5 bg-secondary border border-border rounded-xl text-sm font-medium text-foreground shadow-sm;
+  }
+
+  .stat-icon {
+    @apply w-4 h-4 text-primary;
+  }
+
+  /* Project Cards - Clean & Professional */
+  .project-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-5 my-6;
+  }
+
+  .project-card {
+    @apply p-6 bg-secondary border border-border rounded-xl transition-all duration-200 hover:border-primary/30 hover:shadow-md;
+  }
+
+  .project-card-title {
+    @apply font-semibold text-foreground text-lg mb-2;
+  }
+
+  .project-card-description {
+    @apply text-sm text-muted-foreground leading-relaxed mb-4;
+  }
+
+  .project-link {
+    @apply text-sm text-primary font-medium hover:underline underline-offset-2;
+  }
+
+  /* CTA Card */
+  .cta-card {
+    @apply p-6 bg-primary/5 border border-primary/20 rounded-xl;
+  }
+
+  /* Skills Section */
+  .skills-row {
+    @apply flex flex-wrap gap-2 my-6;
+  }
+
+  .skill-tag {
+    @apply px-3 py-1.5 text-sm bg-secondary border border-border rounded-lg text-muted-foreground font-medium transition-colors hover:bg-primary/10 hover:text-primary hover:border-primary/30;
+  }
+
+  /* Timeline - Professional */
+  .timeline {
+    @apply space-y-8 my-6;
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-2;
+  }
+
+  .timeline-item::before {
+    content: "";
+    @apply absolute left-0 top-2 bottom-0 w-0.5 bg-border;
+  }
+
+  .timeline-item:last-child::before {
+    @apply bottom-auto h-4;
+  }
+
+  .timeline-dot {
+    @apply absolute left-[-4px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary border-2 border-background;
+  }
+
+  .timeline-title {
+    @apply font-semibold text-foreground text-base mb-1;
+  }
+
+  .timeline-period {
+    @apply text-sm text-primary font-medium mb-2;
+  }
+
+  .timeline-description {
+    @apply text-sm text-muted-foreground leading-relaxed;
+  }
+
+  /* Contact Grid */
+  .contact-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4 my-6;
+  }
+
+  .contact-item {
+    @apply flex items-start gap-4 p-5 bg-secondary border border-border rounded-xl transition-all duration-200 hover:border-primary/30;
+  }
+
+  .contact-icon {
+    @apply w-11 h-11 flex items-center justify-center bg-primary/10 rounded-xl text-primary;
+  }
+
+  .contact-label {
+    @apply text-xs text-muted-foreground uppercase tracking-wide mb-0.5;
+  }
+
+  .contact-value {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  /* Social Links */
+  .social-row {
+    @apply flex flex-wrap gap-3 my-6;
+  }
+
+  .social-link {
+    @apply inline-flex items-center gap-2.5 px-5 py-2.5 bg-secondary border border-border rounded-xl text-sm font-medium text-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:border-primary/30;
+  }
+
+  /* Footer */
+  .footer-simple {
+    @apply text-center text-sm text-muted-foreground py-8 mt-12 border-t border-border;
+  }
+
+  /* Paragraph styling */
+  .content-paragraph {
+    @apply text-muted-foreground leading-relaxed mb-6;
+  }
+
+  .content-paragraph a {
+    @apply text-primary font-medium hover:underline underline-offset-2;
+  }
+
+  /* Mobile menu */
+  .mobile-menu-btn {
+    @apply md:hidden p-2 rounded-lg hover:bg-secondary;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.15);
+  color: hsl(var(--foreground));
+}
+
+/* Scroll Animations */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* Section animation on scroll (using Intersection Observer) */
+.section-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   TESTIMONIALS MARQUEE SECTION
+   ============================================ */
+
+.testimonials-marquee-container {
+  @apply relative mx-auto max-w-6xl;
+  height: 500px;
+  overflow: hidden;
+}
+
+.testimonials-marquee-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-full;
+}
+
+.testimonial-column {
+  @apply overflow-hidden h-full relative;
+}
+
+.marquee-track {
+  @apply flex flex-col;
+}
+
+/* Marquee animations */
+@keyframes marquee-up {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-down {
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-marquee-slow {
+  animation: marquee-up 60s linear infinite;
+}
+
+.animate-marquee-normal {
+  animation: marquee-up 45s linear infinite;
+}
+
+.animate-marquee-fast {
+  animation: marquee-up 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation-name: marquee-down;
+}
+
+/* Pause animation on hover */
+.testimonial-column:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Testimonial card - Matching dark theme */
+.testimonial-card {
+  @apply p-5 rounded-lg transition-all duration-300;
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+}
+
+.testimonial-card:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  background: hsl(var(--border));
+  transform: translateY(-2px);
+}
+
+/* Gradient fade overlays */
+.testimonials-fade-top,
+.testimonials-fade-bottom {
+  @apply absolute left-0 right-0 pointer-events-none z-10;
+  height: 80px;
+}
+
+.testimonials-fade-top {
+  @apply top-0;
+  background: linear-gradient(180deg, hsl(var(--card)) 0%, transparent 100%);
+}
+
+.testimonials-fade-bottom {
+  @apply bottom-0;
+  background: linear-gradient(0deg, hsl(var(--card)) 0%, transparent 100%);
+}

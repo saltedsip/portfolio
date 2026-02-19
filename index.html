@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talha Kashif Hassan - Full Stack Developer</title>
+
+  <!-- Critical CSS - Inlined to prevent render-blocking and white flash -->
+  <style>
+    /* Critical above-the-fold styles for instant first paint */
+    :root {
+      --background: 215 28% 7%;
+      --foreground: 0 0% 100%;
+      --card: 215 22% 11%;
+      --primary: 14 100% 60%;
+      --border: 215 14% 22%;
+      --muted-foreground: 215 10% 55%
+    }
+
+    *,
+    ::before,
+    ::after {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid
+    }
+
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      font-family: system-ui, sans-serif;
+      scroll-behavior: smooth;
+      color-scheme: dark
+    }
+
+    body {
+      margin: 0;
+      background-color: hsl(215 28% 7%);
+      color: hsl(0 0% 100%);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased
+    }
+
+    #root {
+      min-height: 100vh
+    }
+
+    /* Prevent layout shift from loading fonts */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em
+    }
+  </style>
+
+  <!-- Fonts - Preconnect and load asynchronously to prevent render blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load fonts with display=swap for fast initial render, use media="print" hack for async loading -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet">
+  </noscript>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="I help businesses and startups bring their ideas to life through clean, scalable code. Level 2 Fiverr seller with 200+ projects delivered and 4.9/5 client satisfaction rating.">
+  <meta name="author" content="Talha Kashif Hassan" />
+  <meta name="keywords"
+    content="full stack developer, react developer, nextjs, nodejs, freelance developer, web developer, fiverr">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <!-- Theme color for browser chrome -->
+  <meta name="theme-color" content="#0d1117">
+  <link rel="canonical" href="https://talhakashif.com" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talhakashif.com" />
+  <meta property="og:title" content="Talha Kashif Hassan - Full Stack Developer">
+  <meta property="og:description"
+    content="I help businesses and startups bring their ideas to life through clean, scalable code. Level 2 Fiverr seller with 200+ projects delivered.">
+  <meta property="og:image" content="https://talhakashif.com/og_image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Talha Kashif Hassan - Full Stack Developer">
+  <meta name="twitter:description"
+    content="I help businesses and startups bring their ideas to life through clean, scalable code. Level 2 Fiverr seller with 200+ projects delivered.">
+  <meta name="twitter:image" content="https://talhakashif.com/og_image.jpg">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
