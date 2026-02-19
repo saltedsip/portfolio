@@ -5,21 +5,42 @@
 // Every text, link, card, and section can be modified here.
 // ============================================
 
+import type {
+  SiteConfig,
+  PersonalInfo,
+  ContactLink,
+  NavLink,
+  HeroContent,
+  HeroBadge,
+  AboutContent,
+  Skills,
+  WorkExperience,
+  Education,
+  Certification,
+  ProjectsContent,
+  Project,
+  ContactContent,
+  TestimonialsContent,
+  Testimonial,
+  FooterContent,
+  SectionVisibility,
+} from "@/types/portfolio";
+
 // --------------------------------------------
 // SITE CONFIG
 // --------------------------------------------
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   title: "Talha Kashif Hassan - Full Stack Developer",
   description: "Full stack developer specializing in React, Next.js, and Node.js.",
   url: "https://talhakashif.com",
-  ogImage: "https://talhakashif.com/og_image.jpg",
+  ogImage: "https://talhakashif.com/og_image.png",
   keywords: "full stack developer, react, nextjs, nodejs, freelance",
 };
 
 // --------------------------------------------
 // PERSONAL INFO
 // --------------------------------------------
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
   name: "Talha Kashif Hassan",
   firstName: "Talha",
   title: "Full Stack Developer",
@@ -33,7 +54,7 @@ export const personalInfo = {
 // showInNav: appears in header/footer navigation
 // showInContact: appears as a card in the contact section
 // --------------------------------------------
-export const contactLinks = [
+export const contactLinks: ContactLink[] = [
   {
     id: "email",
     label: "Email",
@@ -94,7 +115,7 @@ export const contactLinks = [
 // --------------------------------------------
 // NAVIGATION
 // --------------------------------------------
-export const navLinks = [
+export const navLinks: NavLink[] = [
   { label: "Home", href: "/", isRoute: true },
   { label: "About", href: "/about", isRoute: true },
   { label: "Projects", href: "/projects", isRoute: true },
@@ -104,7 +125,7 @@ export const navLinks = [
 // --------------------------------------------
 // HERO SECTION
 // --------------------------------------------
-export const heroContent = {
+export const heroContent: HeroContent = {
   greeting: "👋",
   headline: "Talha Kashif Hassan",
   subheadline: "Full Stack Developer",
@@ -117,7 +138,7 @@ export const heroContent = {
 };
 
 // Hero badges/stats
-export const heroBadges = [
+export const heroBadges: HeroBadge[] = [
   { icon: "award", label: "Level 2 Seller" },
   { icon: "star", label: "4.9/5 rating" },
   { icon: "clock", label: "24hr response" },
@@ -126,7 +147,7 @@ export const heroBadges = [
 // --------------------------------------------
 // ABOUT SECTION
 // --------------------------------------------
-export const aboutContent = {
+export const aboutContent: AboutContent = {
   title: "About me",
   paragraphs: [
     "I'm a full stack developer who loves building modern, scalable web applications that solve real problems. My core stack is React, Next.js, and Node.js, but I'm equally comfortable with Webflow, WordPress, and custom backend solutions.",
@@ -137,7 +158,7 @@ export const aboutContent = {
 // --------------------------------------------
 // SKILLS (add/remove categories and skills)
 // --------------------------------------------
-export const skills = {
+export const skills: Skills = {
   Frontend: [
     "React",
     "Next.js",
@@ -168,7 +189,7 @@ export const skills = {
 // --------------------------------------------
 export const experienceTitle = "Experience";
 
-export const workExperience = [
+export const workExperience: WorkExperience[] = [
   {
     id: 1,
     company: "Fiverr",
@@ -212,12 +233,12 @@ export const workExperience = [
 // --------------------------------------------
 export const educationTitle = "Education & Certifications";
 
-export const education = {
+export const education: Education = {
   degree: "Bachelor of Science in Computer Science",
   institution: "Virtual University of Pakistan",
 };
 
-export const certifications = [
+export const certifications: Certification[] = [
   {
     title: "Code In Place",
     issuer: "Stanford University",
@@ -233,18 +254,18 @@ export const certifications = [
 // --------------------------------------------
 // PROJECTS SECTION
 // --------------------------------------------
-export const projectsContent = {
+export const projectsContent: ProjectsContent = {
   title: "Projects",
   subtitle: "Here's a selection of projects I've worked on. Each represents a unique challenge and opportunity to deliver exceptional results.",
 };
 
-export const projects = [
+export const projects: Project[] = [
   {
     id: "lms-course-platform",
     title: "LMS Course Platform",
     description: "Full-featured learning management system with video courses, progress tracking, quizzes, certificates, and Stripe payment integration. Built for an ed-tech startup.",
     longDescription: "This comprehensive learning management system was built for an ed-tech startup looking to deliver online courses at scale. The platform includes video hosting with progress tracking, interactive quizzes with instant feedback, certificate generation, and a complete payment system powered by Stripe. Students can track their learning journey while instructors have access to detailed analytics dashboards.",
-    image: "https://placehold.co/1200x800/1a1a2e/e63946?text=LMS+Platform",
+    image: "/assets/projects/dashboard.png",
     tags: ["Next.js", "Prisma", "PostgreSQL", "Stripe"],
     link: "#",
     github: "",
@@ -255,7 +276,7 @@ export const projects = [
     title: "Job Board SaaS",
     description: "Multi-tenant job board platform with employer dashboards, applicant tracking, resume parsing, and subscription billing. Handles 10K+ listings.",
     longDescription: "A multi-tenant job board platform designed for scale. Employers can post jobs, review applications, and manage their hiring pipeline. The system includes AI-powered resume parsing, applicant tracking, and subscription-based billing. Built to handle over 10,000 active job listings with real-time search powered by Redis.",
-    image: "https://placehold.co/1200x800/1a1a2e/e63946?text=Job+Board",
+    image: "/assets/projects/agency.png",
     tags: ["React", "Node.js", "MongoDB", "Redis"],
     link: "#",
     github: "",
@@ -266,7 +287,7 @@ export const projects = [
     title: "Real Estate Portal",
     description: "Property listing platform with advanced search filters, map integration, virtual tours, and agent management. Mobile-responsive with 50K+ monthly users.",
     longDescription: "A feature-rich real estate platform serving 50K+ monthly users. Property seekers can browse listings with advanced filters, view properties on an interactive Mapbox-powered map, and take virtual tours. Agents have dedicated dashboards to manage their listings and respond to inquiries. The platform is fully responsive and optimized for mobile users.",
-    image: "https://placehold.co/1200x800/1a1a2e/e63946?text=Real+Estate",
+    image: "/assets/projects/ecommerce.png",
     tags: ["Next.js", "TypeScript", "Mapbox", "Supabase"],
     link: "#",
     github: "",
@@ -277,7 +298,7 @@ export const projects = [
     title: "Travel Booking Engine",
     description: "End-to-end travel booking system with flight/hotel search, dynamic pricing, booking management, and multi-currency support for a travel agency.",
     longDescription: "A complete travel booking solution built for a travel agency. The system aggregates flights and hotels from multiple providers, implements dynamic pricing based on demand, and supports booking management with email confirmations. Multi-currency support allows customers worldwide to book in their local currency.",
-    image: "https://placehold.co/1200x800/1a1a2e/e63946?text=Travel+Booking",
+    image: "/assets/projects/portfolio.png",
     tags: ["React", "Express", "PostgreSQL", "AWS"],
     link: "#",
     github: "",
@@ -288,7 +309,7 @@ export const projects = [
 // --------------------------------------------
 // CONTACT SECTION
 // --------------------------------------------
-export const contactContent = {
+export const contactContent: ContactContent = {
   title: "Get in Touch",
   subtitle: "Have a project in mind? I'd love to hear about it. Feel free to reach out through any of the channels below.",
   ctaTitle: "Ready to start a project?",
@@ -305,13 +326,13 @@ export const navSocialLinks = contactLinks.filter(link => link.showInNav);
 // --------------------------------------------
 // TESTIMONIALS SECTION
 // --------------------------------------------
-export const testimonialsContent = {
+export const testimonialsContent: TestimonialsContent = {
   badge: "CLIENT LOVE",
   title: "Loved by clients",
   subtitle: "What people I've worked with are saying.",
 };
 
-export const testimonials = [
+export const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "J. Anthony",
@@ -389,7 +410,7 @@ export const testimonials = [
 // --------------------------------------------
 // FOOTER
 // --------------------------------------------
-export const footerContent = {
+export const footerContent: FooterContent = {
   copyright: `© ${new Date().getFullYear()} Talha Kashif Hassan`,
   showSocialLinks: true,
 };
@@ -398,7 +419,7 @@ export const footerContent = {
 // SECTION VISIBILITY
 // Set to false to visually hide (content still accessible to search engines)
 // --------------------------------------------
-export const sectionVisibility = {
+export const sectionVisibility: SectionVisibility = {
   hero: true,
   about: true,
   projects: false,

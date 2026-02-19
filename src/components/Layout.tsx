@@ -63,9 +63,10 @@ const Layout = ({ children }: LayoutProps) => {
       <Header isScrolled={isScrolled} />
 
       <main
+        role="main"
         className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-16 transition-all duration-300 ease-out ${isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-6"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-6"
           }`}
       >
         {children}

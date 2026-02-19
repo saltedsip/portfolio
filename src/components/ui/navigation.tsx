@@ -1,6 +1,6 @@
 import { ArrowUp } from "lucide-react";
 import { personalInfo, navLinks, sectionVisibility, navSocialLinks } from "@/data/portfolio";
-import { useState, useMemo, useCallback, memo } from "react";
+import { useState, useMemo, useCallback, useEffect, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // TK Logo SVG Component
@@ -72,6 +72,18 @@ export const Header = ({ isScrolled }: HeaderProps) => {
     setIsMobileMenuOpen(false);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   // Social items for footer - use navSocialLinks from unified contactLinks
   const socialItems = useMemo(() =>
     navSocialLinks.map(link => ({ label: link.label, link: link.href }))
@@ -82,8 +94,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
       <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4">
         {/* Floating pill container - Oska style */}
         <div className={`max-w-4xl mx-auto transition-all duration-300 ${isScrolled
-            ? "bg-card/95 backdrop-blur-md shadow-lg border border-border"
-            : "bg-card/80 backdrop-blur-sm border border-border/50"
+          ? "bg-card/95 backdrop-blur-md shadow-lg border border-border"
+          : "bg-card/80 backdrop-blur-sm border border-border/50"
           } rounded-full px-2 py-2`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -100,8 +112,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
                     key={link.label}
                     to={link.href}
                     className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${isActive
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     {link.label}
@@ -130,8 +142,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
       {/* Mobile Menu - Fullscreen Overlay with Staggered Animation */}
       <div
         className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ${isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
       >
         {/* Background overlay */}
@@ -171,8 +183,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
                 <div
                   key={link.label}
                   className={`overflow-hidden transition-all duration-500 ${isMobileMenuOpen
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                     }`}
                   style={{
                     transitionDelay: isMobileMenuOpen ? `${150 + index * 75}ms` : "0ms"
@@ -196,8 +208,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
           {/* Contact Button */}
           <div
             className={`mt-10 transition-all duration-500 ${isMobileMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
               }`}
             style={{
               transitionDelay: isMobileMenuOpen ? `${150 + visibleNavLinks.length * 75}ms` : "0ms"
@@ -216,8 +228,8 @@ export const Header = ({ isScrolled }: HeaderProps) => {
           {socialItems.length > 0 ? (
             <div
               className={`mt-auto pt-8 transition-all duration-500 ${isMobileMenuOpen
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
                 }`}
               style={{
                 transitionDelay: isMobileMenuOpen ? `${200 + visibleNavLinks.length * 75}ms` : "0ms"

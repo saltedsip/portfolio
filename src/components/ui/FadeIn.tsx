@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-// Lazy mobile device detection - only computed once
+// Mobile device detection - uses matchMedia for reliability
+// Cached per session since device type doesn't change
 let cachedIsMobile: boolean | null = null;
 const getIsMobileDevice = (): boolean => {
   if (cachedIsMobile !== null) return cachedIsMobile;
   if (typeof window === 'undefined') return false;
-  cachedIsMobile = window.innerWidth < 768 || 
-    ('ontouchstart' in window && navigator.maxTouchPoints > 0);
+  const isNarrow = window.matchMedia('(max-width: 767px)').matches;
+  const hasTouch = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
+  cachedIsMobile = isNarrow && hasTouch;
   return cachedIsMobile;
 };
 
@@ -19,10 +21,10 @@ interface FadeInProps {
   direction?: "up" | "down" | "left" | "right" | "none";
 }
 
-export function FadeIn({ 
-  children, 
-  className = "", 
-  delay = 0, 
+export function FadeIn({
+  children,
+  className = "",
+  delay = 0,
   duration = 500,
   threshold = 0.1,
   direction = "up"
@@ -30,7 +32,7 @@ export function FadeIn({
   // Compute isMobile once during component mount (stable value)
   const isMobileRef = useRef(getIsMobileDevice());
   const isMobile = isMobileRef.current;
-  
+
   // On mobile, start visible. On desktop, start hidden.
   const [isVisible, setIsVisible] = useState(isMobile);
   const ref = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ export function FadeIn({
   const getTransformStyle = () => {
     if (!direction || direction === "none") return "";
     if (isVisible) return "translate(0, 0)";
-    
+
     switch (direction) {
       case "up": return "translate(0, 20px)";
       case "down": return "translate(0, -20px)";
