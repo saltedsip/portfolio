@@ -422,7 +422,7 @@ export const footerContent: FooterContent = {
 export const sectionVisibility: SectionVisibility = {
   hero: true,
   about: true,
-  projects: false,
+  projects: true,
   testimonials: true,
   contact: true,
 };
