@@ -26,14 +26,15 @@ import type {
   SectionVisibility,
 } from "@/types/portfolio";
 import visualbuilder from "../assets/projects/visualbuilder.png";
-
+import tozan from "../assets/projects/tozan.png";
 
 // --------------------------------------------
 // SITE CONFIG
 // --------------------------------------------
 export const siteConfig: SiteConfig = {
   title: "Talha Kashif Hassan - Full Stack Developer",
-  description: "Full stack developer specializing in React, Next.js, and Node.js.",
+  description:
+    "Full stack developer specializing in React, Next.js, and Node.js.",
   url: "https://www.talhakashif.com",
   ogImage: "https://www.talhakashif.com/og_image.png",
   keywords: "full stack developer, react, nextjs, nodejs, freelance",
@@ -178,12 +179,7 @@ export const skills: Skills = {
     "MongoDB",
     "Firebase",
   ],
-  Tools: [
-    "Git",
-    "Webflow",
-    "WordPress",
-    "Figma",
-  ],
+  Tools: ["Git", "Webflow", "WordPress", "Figma"],
 };
 
 // --------------------------------------------
@@ -258,14 +254,16 @@ export const certifications: Certification[] = [
 // --------------------------------------------
 export const projectsContent: ProjectsContent = {
   title: "Projects",
-  subtitle: "Here's a selection of projects I've worked on. Each represents a unique challenge and opportunity to deliver exceptional results.",
+  subtitle:
+    "Here's a selection of projects I've worked on. Each represents a unique challenge and opportunity to deliver exceptional results.",
 };
 
 export const projects: Project[] = [
   {
     id: "visualbuilder",
     title: "Visual Builder",
-    description: "Visual Builder is a fully-featured, local-first visual web builder engineered to feel like premium tools such as Elementor and Webflow. Built entirely with React, TypeScript, Tailwind CSS, and Shadcn UI, it allows you to design, build, and export component-driven web pages without ever writing a line of code.",
+    description:
+      "Visual Builder is a fully-featured, local-first visual web builder engineered to feel like premium tools such as Elementor and Webflow. Built entirely with React, TypeScript, Tailwind CSS, and Shadcn UI, it allows you to design, build, and export component-driven web pages without ever writing a line of code.",
     longDescription: `Visual Builder is a fully-featured, local-first visual web builder designed to deliver a premium, no-code development experience akin to tools like Webflow and Elementor. Engineered entirely with React, TypeScript, Tailwind CSS, and Shadcn UI, it empowers users to design, build, and export component-driven, multi-page websites without writing a single line of code.
 
 **Core Highlights:**
@@ -283,6 +281,35 @@ export const projects: Project[] = [
     github: "https://github.com/saltedsip/visualbuilder", // Add your repo link here if you have one!
     featured: true,
   },
+  {
+    id: "tozan",
+    title: "Tozan Design",
+    description:
+      "A Next.js rebuild of a Dutch interior-design studio's site, replacing a Bricks/WordPress build with a static, animation-first front end.",
+    longDescription: `**What I did**
+
+Replaced the studio's Bricks-builder WordPress front end with a fully static Next.js export. The goal was a site that loads instantly, animates the way the studio's print portfolio feels (deliberate, paced, not flashy), and ranks on its own brand searches.
+
+**Key work:**
+
+- Built a custom animation system in plain React + CSS — a per-character WaveText cascade for nav links, a center-out AnimatedDivider that draws in sync with the wave, a sticky scroll-driven back button on project pages, and a per-route entrance transition. No GSAP, no Framer Motion — just IntersectionObserver + transition.
+- Synchronized animations across components. The footer's divider and the four nav-link wave reveals share a single IntersectionObserver on the nav row, so the line and the letter cascade start on the exact same frame.
+- Cut hero image weight by 93% — 8 MB print-resolution PNGs downscaled to 2560 wide and re-encoded as WebP / quality-92 JPEG via sharp.Same visual fidelity, 500 KB instead of 8 MB per asset.
+- SEO ground-up: per-page metadata exports, generated sitemap.xml + robots.txt, Organization + Article + CreativeWork + BreadcrumbList   JSON-LD, OG + Twitter card metadata, canonical URLs.
+- Headerless content pipeline. Projects and blog posts live in flat JSON / MDX files under content/ — no CMS, no database, no admin panel. Editing copy means editing a file and pushing.
+- Tailwind v4 with @theme tokens — single source of truth for brand colors, fonts, and the design system; replaces ~2000 lines of per-id CSS that the Bricks export shipped with.
+
+**Things I'd do differently**
+
+- Wire a tiny headless CMS (Sanity / Tina) for the project JSON files so the studio can update copy without touching code.
+- Pre-generate AVIF alongside JPEG for the 5% of users on browsers that handle it.
+`,
+    image: tozan,
+    tags: ["NextJs", "Typescript", "Tailwind CSS"],
+    link: "https://tozandesign.nl",
+    github: "", // Add your repo link here if you have one!
+    featured: true,
+  },
 ];
 
 // --------------------------------------------
@@ -290,7 +317,8 @@ export const projects: Project[] = [
 // --------------------------------------------
 export const contactContent: ContactContent = {
   title: "Get in Touch",
-  subtitle: "Have a project in mind? I'd love to hear about it. Feel free to reach out through any of the channels below.",
+  subtitle:
+    "Have a project in mind? I'd love to hear about it. Feel free to reach out through any of the channels below.",
   ctaTitle: "Ready to start a project?",
   ctaSubtitle: "Let's build something great together.",
   ctaButtonText: "Send me an email",
@@ -299,8 +327,8 @@ export const contactContent: ContactContent = {
 
 // Helper exports for backward compatibility
 // Use contactLinks directly for full control
-export const contactMethods = contactLinks.filter(link => link.showInContact);
-export const navSocialLinks = contactLinks.filter(link => link.showInNav);
+export const contactMethods = contactLinks.filter((link) => link.showInContact);
+export const navSocialLinks = contactLinks.filter((link) => link.showInNav);
 
 // --------------------------------------------
 // TESTIMONIALS SECTION
@@ -318,7 +346,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "United States",
     image: "",
-    content: "Kashif did an amazing job! The website looks incredible and very professional. He was polite, communicative, and paid great attention to detail throughout the entire process. Super talented designer — highly recommended! 10/10",
+    content:
+      "Kashif did an amazing job! The website looks incredible and very professional. He was polite, communicative, and paid great attention to detail throughout the entire process. Super talented designer — highly recommended! 10/10",
     rating: 5,
   },
   {
@@ -327,7 +356,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "Germany",
     image: "",
-    content: "Absolutely wow! KASHIF is an outstanding professional, super friendly, and always reliable. He perfectly redesigned my website, making it look great on mobile as well. Very fast and competent service – always happy to work with him again!",
+    content:
+      "Absolutely wow! KASHIF is an outstanding professional, super friendly, and always reliable. He perfectly redesigned my website, making it look great on mobile as well. Very fast and competent service – always happy to work with him again!",
     rating: 5,
   },
   {
@@ -336,7 +366,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "United Kingdom",
     image: "",
-    content: "If I could give this guy more stars, I would. Thanks a million for your support and patience! I will be back!",
+    content:
+      "If I could give this guy more stars, I would. Thanks a million for your support and patience! I will be back!",
     rating: 5,
   },
   {
@@ -345,7 +376,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "United States",
     image: "",
-    content: "I know barely anything about website design. This guy was so professional and made sure he got it right. I'm very happy with the results — money very well spent. He saved me a lot of time of trial and error.",
+    content:
+      "I know barely anything about website design. This guy was so professional and made sure he got it right. I'm very happy with the results — money very well spent. He saved me a lot of time of trial and error.",
     rating: 5,
   },
   {
@@ -354,7 +386,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "Australia",
     image: "",
-    content: "Kashif went above and beyond to help get the job done promptly and efficiently. He was always happy to help with my requests. Very good communication and turnaround times. Would highly recommend him to anyone!",
+    content:
+      "Kashif went above and beyond to help get the job done promptly and efficiently. He was always happy to help with my requests. Very good communication and turnaround times. Would highly recommend him to anyone!",
     rating: 5,
   },
   {
@@ -363,7 +396,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "Germany",
     image: "",
-    content: "I am beyond pleased with his work. Not only did he optimize my website for mobile, but he also gave me helpful suggestions to fix my site's SEO! Amazing experience — so friendly and responsive.",
+    content:
+      "I am beyond pleased with his work. Not only did he optimize my website for mobile, but he also gave me helpful suggestions to fix my site's SEO! Amazing experience — so friendly and responsive.",
     rating: 5,
   },
   {
@@ -372,7 +406,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "India",
     image: "",
-    content: "Excellent Work — my best experience on Fiverr so far! Easy and quick service. Great communication. Did what he said he would do. If you are considering working with this guy, give him a chance. You won't regret it!",
+    content:
+      "Excellent Work — my best experience on Fiverr so far! Easy and quick service. Great communication. Did what he said he would do. If you are considering working with this guy, give him a chance. You won't regret it!",
     rating: 5,
   },
   {
@@ -381,7 +416,8 @@ export const testimonials: Testimonial[] = [
     role: "",
     company: "United States",
     image: "",
-    content: "The Seller works fast, solved problems quickly, and was very understanding. Also demonstrated strong leadership skills and is an over-achiever. The pricing was better than competitors for similar service!",
+    content:
+      "The Seller works fast, solved problems quickly, and was very understanding. Also demonstrated strong leadership skills and is an over-achiever. The pricing was better than competitors for similar service!",
     rating: 5,
   },
 ];
