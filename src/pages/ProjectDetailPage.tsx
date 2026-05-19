@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Layout from "@/components/Layout";
 import { SEO } from "@/components/SEO";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 
 const ProjectDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -59,12 +60,12 @@ const ProjectDetailPage = () => {
 
         {/* Hero Image */}
         {project.image && (
-          <div className="rounded-3xl overflow-hidden mb-12 border border-border">
-            <img
+          <div className="rounded-3xl overflow-hidden mb-12 border border-border aspect-[16/9] max-h-[500px]">
+            <OptimizedImage
               src={project.image}
               alt={project.title}
-              loading="lazy"
-              className="w-full h-auto"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
         )}

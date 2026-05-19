@@ -25,8 +25,8 @@ import type {
   FooterContent,
   SectionVisibility,
 } from "@/types/portfolio";
-import visualbuilder from "../assets/projects/visualbuilder.png";
-import tozan from "../assets/projects/tozan.png";
+import visualbuilder from "../assets/projects/visualbuilder.webp";
+import tozan from "../assets/projects/tozan.webp";
 
 // --------------------------------------------
 // SITE CONFIG
