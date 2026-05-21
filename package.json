@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "generate-sitemap": "node --experimental-strip-types scripts/generate-sitemap.ts",
     "indexnow": "node --experimental-strip-types scripts/indexnow-submit.ts",
-    "postbuild": "node --experimental-strip-types scripts/generate-sitemap.ts"
+    "postbuild": "node --experimental-strip-types scripts/inline-css.ts && node --experimental-strip-types scripts/generate-sitemap.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",

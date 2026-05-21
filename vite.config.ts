@@ -15,15 +15,6 @@ export default defineConfig(() => ({
     },
   },
   build: {
-    // Improve chunk splitting for better caching
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-utils': ['clsx'],
-        },
-      },
-    },
     // Enable minification
     minify: 'esbuild' as const,
     // Optimize CSS

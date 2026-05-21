@@ -21,8 +21,8 @@
     /* Primary - Vermillion Orange (from logo) */
     --primary: 14 100% 60%;
     /* Vermillion #ff5c33 */
-    --primary-foreground: 0 0% 100%;
-    /* White for contrast on Vermillion */
+    --primary-foreground: 215 28% 7%;
+    /* Deep navy #0d1117 for contrast on Vermillion */
 
     /* Secondary */
     --secondary: 215 22% 11%;
