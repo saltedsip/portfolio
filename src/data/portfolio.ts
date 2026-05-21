@@ -40,6 +40,8 @@ export const siteConfig: SiteConfig = {
   keywords: "full stack developer, react, nextjs, nodejs, freelance",
 };
 
+const emailAddress = ["talhakashif.dev", "gmail.com"].join("@");
+
 // --------------------------------------------
 // PERSONAL INFO
 // --------------------------------------------
@@ -47,7 +49,7 @@ export const personalInfo: PersonalInfo = {
   name: "Talha Kashif Hassan",
   firstName: "Talha",
   title: "Full Stack Developer",
-  email: "talhakashif.dev@gmail.com",
+  email: emailAddress,
   phone: "+92 326 622 7895",
   location: "Remote, Worldwide",
 };
@@ -61,7 +63,7 @@ export const contactLinks: ContactLink[] = [
   {
     id: "email",
     label: "Email",
-    value: "talhakashif.dev@gmail.com",
+    value: emailAddress,
     icon: "mail",
     href: "gmail", // Special value: opens Gmail compose
     showInNav: false,

@@ -9,6 +9,10 @@
 
 import * as fs from "fs";
 import * as path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Read portfolio.ts as raw text and parse values
 const portfolioPath = path.resolve(__dirname, "../src/data/portfolio.ts");

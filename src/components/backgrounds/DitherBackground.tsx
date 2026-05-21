@@ -45,6 +45,7 @@ function DitherBackground({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const timeRef = useRef(0);
+  const imageDataRef = useRef<ImageData | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   // Defer initialization to not block main thread
@@ -83,6 +84,7 @@ function DitherBackground({
         canvas.style.width = '100%';
         canvas.style.height = '100%';
         canvas.style.imageRendering = 'pixelated';
+        imageDataRef.current = null;
       }, 100);
     };
 
@@ -92,6 +94,7 @@ function DitherBackground({
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.style.imageRendering = 'pixelated';
+    imageDataRef.current = null;
 
     window.addEventListener('resize', resize, { passive: true });
 
@@ -180,8 +183,12 @@ function DitherBackground({
       const w = canvas.width;
       const h = canvas.height;
 
-      const imageData = ctx.createImageData(w, h);
+      if (!imageDataRef.current || imageDataRef.current.width !== w || imageDataRef.current.height !== h) {
+        imageDataRef.current = ctx.createImageData(w, h);
+      }
+      const imageData = imageDataRef.current;
       const data = imageData.data;
+      data.fill(0);
 
       const scale = 0.004;
       const colorR = color.r;
