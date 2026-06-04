@@ -84,7 +84,7 @@ const ContactSection = () => {
         <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-2">
           {contactContent.title || "Contact"}
         </p>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Let's work together
         </h2>
         <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
@@ -225,7 +225,7 @@ const ContactSection = () => {
                   placeholder="John Doe"
                   className={`w-full px-4 py-3 bg-muted/30 border ${
                     errors.name ? "border-primary" : "border-border"
-                  } rounded-xl text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors`}
+                  } rounded-xl text-base text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors`}
                 />
                 {errors.name && (
                   <p className="text-xs text-primary flex items-center gap-1 mt-1">
@@ -248,7 +248,7 @@ const ContactSection = () => {
                   placeholder="john@example.com"
                   className={`w-full px-4 py-3 bg-muted/30 border ${
                     errors.email ? "border-primary" : "border-border"
-                  } rounded-xl text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors`}
+                  } rounded-xl text-base text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors`}
                 />
                 {errors.email && (
                   <p className="text-xs text-primary flex items-center gap-1 mt-1">
@@ -271,7 +271,7 @@ const ContactSection = () => {
                   placeholder="Describe your project goals, timeline, and requirements..."
                   className={`w-full px-4 py-3 bg-muted/30 border ${
                     errors.message ? "border-primary" : "border-border"
-                  } rounded-xl text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors resize-none`}
+                  } rounded-xl text-base text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors resize-none`}
                 />
                 {errors.message && (
                   <p className="text-xs text-primary flex items-center gap-1 mt-1">

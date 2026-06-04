@@ -33,6 +33,11 @@ const HomePage = () => {
 
   // Scroll to hash on mount (handles back-navigation from subpages)
   useEffect(() => {
+    // Override browser scroll restoration to prevent layout jumping on reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const hash = window.location.hash;
     if (hash) {
       const id = hash.replace("#", "");
@@ -42,8 +47,21 @@ const HomePage = () => {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 300);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'auto';
+        }
+      };
+    } else {
+      window.scrollTo(0, 0);
     }
+
+    return () => {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
   }, []);
 
   // Delay loading the background to prioritize content
@@ -68,7 +86,7 @@ const HomePage = () => {
 
       <main className="relative z-10">
         {/* Hero — screen height viewport with parent-relative dither background */}
-        <div className="relative w-full h-[100dvh] overflow-hidden">
+        <div id="home" className="relative w-full h-[100dvh] overflow-hidden">
           {showBackground && (
             <Suspense fallback={null}>
               <DitherBackground

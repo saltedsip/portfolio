@@ -17,7 +17,7 @@ const Highlight = ({ children }: { children: React.ReactNode }) => (
 );
 
 const HeroSection = () => (
-  <section id="home" className="flex flex-col justify-center py-4">
+  <section className="flex flex-col justify-center py-4">
     {/* Hero Content - Oska style */}
     <div className="mb-8 md:mb-12">
       {/* Main Headline with professional highlight */}

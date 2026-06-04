@@ -1,31 +1,31 @@
 # Portfolio
 
-A modern, performant portfolio website built with React, TypeScript, and TailwindCSS. Features a stunning dark theme with vermillion accents, smooth animations, and mobile-first design.
+A modern, performant portfolio website built with React, TypeScript, TailwindCSS, and Bun. Features a stunning dark theme with vermillion accents, smooth animations, and a high-converting one-pager funnel layout.
 
 ## ✨ Features
 
-- **Multi-page routing** with React Router and smooth page transitions
-- **Dark theme** with deep navy background and vermillion (#F85A3E) accents
-- **Animated background** with custom dithered simplex-noise canvas effect
-- **Fully responsive** mobile-first design (320px to 4K)
-- **Section visibility toggle** — show/hide any section from config
-- **Centralized config** — all content in `src/data/portfolio.ts`
-- **Testimonials carousel** with auto-rotation and pause on hover
-- **CSS staggered mobile menu** with fullscreen overlay and body scroll lock
-- **TypeScript strict mode** with full type definitions
-- **SEO optimized** — sitemap, meta tags, Open Graph, robots.txt
+- **One-Pager Funnel Layout** with smooth anchor scrolling and active section tracking via IntersectionObserver
+- **Case Study Routing** with React Router for detailed project deep-dives
+- **Dark Theme** with deep navy background and vermillion (#F85A3E) accents
+- **Scoped Animated Background** with a custom dithered simplex-noise canvas overlay on the Hero section, smoothly dissolving into other sections via a frosted-glass blur fade
+- **Interactive Lead Capture Form** with client-side validation, success panel states, and Formspree API integration
+- **Fully Responsive** mobile-first design (320px to 4K)
+- **Centralized Config** — update all content inside `src/data/portfolio.ts`
+- **Testimonials Carousel** with auto-rotation and pause on hover
+- **TypeScript Strict Mode** with clean type safety
+- **SEO Optimized** — sitemaps, canonical links, robots.txt, and metadata via React Helmet Async
 
 ## 🛠️ Tech Stack
 
 - **React 18** + TypeScript (strict mode)
 - **Vite** for fast development and bundling
-- **Bun** as package manager
+- **Bun** as the package manager and runtime
 - **TailwindCSS** for styling
-- **React Router** for client-side routing
+- **React Router** for case study routing
 - **React Helmet Async** for SEO meta tags
 - **Lucide React** for icons
 - **Outfit + DM Sans** typography
-- **Cloudflare Pages** for deployment
+- **Vercel** / **Cloudflare Pages** for deployment
 
 ## 🔧 Optimizations
 
@@ -46,11 +46,12 @@ A modern, performant portfolio website built with React, TypeScript, and Tailwin
 - Safe area insets for notched devices (iPhone X+)
 - `role="main"` on main content area
 - Body scroll lock on mobile menu open
+- Input size `text-base` to prevent iOS automatic zoom on focus
 
 ### Security
-- No hardcoded secrets or API keys
+- Environment variable configuration (`.env` file) for API tokens (`VITE_FORMSPREE_ID`)
 - External links use `rel="noopener noreferrer"`
-- `.env` patterns in `.gitignore`
+- `.env` files ignored in `.gitignore`
 
 ## 📁 Project Structure
 
@@ -61,25 +62,23 @@ src/
 ├── types/
 │   └── portfolio.ts          # TypeScript interfaces for data
 ├── components/
-│   ├── Layout.tsx            # Main layout with page transitions
+│   ├── Layout.tsx            # Case study layout component
 │   ├── SEO.tsx               # Meta tags & Open Graph
 │   ├── backgrounds/
 │   │   └── DitherBackground.tsx  # Canvas dither background
 │   ├── sections/
 │   │   ├── HeroSection.tsx
 │   │   ├── AboutSection.tsx
+│   │   ├── FeaturedProjects.tsx  # Grid of featured projects
 │   │   ├── TestimonialsSection.tsx
-│   │   └── ContactSection.tsx
+│   │   └── ContactSection.tsx    # Interactive contact form
 │   └── ui/
 │       ├── navigation.tsx    # Header, mobile menu, ScrollToTop
 │       └── FadeIn.tsx        # Intersection observer animations
 ├── pages/
-│   ├── HomePage.tsx
-│   ├── AboutPage.tsx
-│   ├── ContactPage.tsx
-│   ├── ProjectsPage.tsx
-│   ├── ProjectDetailPage.tsx
-│   └── NotFoundPage.tsx
+│   ├── HomePage.tsx          # Single page funnel view
+│   ├── ProjectDetailPage.tsx # Project case study details view
+│   └── NotFoundPage.tsx      # Standalone 404 page
 └── index.css                 # Global styles + design system
 ```
 
@@ -90,8 +89,8 @@ Edit `src/data/portfolio.ts` to update everything:
 | Section | What you can change |
 |---------|-------------------|
 | `siteConfig` | Title, description, URL, OG image |
-| `personalInfo` | Name, title, email, phone, location |
-| `contactLinks` | Email, phone, LinkedIn, GitHub, etc. |
+| `personalInfo` | Name, title, email, location |
+| `contactLinks` | Email, LinkedIn, etc. |
 | `heroContent` | Headline, bio, CTAs, resume link |
 | `heroBadges` | Stats badges |
 | `aboutContent` | About paragraphs |
@@ -101,30 +100,34 @@ Edit `src/data/portfolio.ts` to update everything:
 | `projects` | Projects with images and descriptions |
 | `testimonials` | Client testimonials |
 | `contactContent` | CTA text, availability status |
-| `sectionVisibility` | Show/hide sections |
 
 ## 📦 Getting Started
 
-```bash
-# Install dependencies
-bun install
+1. Set up your environment variables:
+   ```bash
+   cp .env.example .env
+   # Add your Formspree ID to VITE_FORMSPREE_ID
+   ```
 
-# Start dev server
-bun run dev
+2. Dev commands:
+   ```bash
+   # Install dependencies
+   bun install
 
-# Build for production
-bun run build
+   # Start dev server
+   bun run dev
 
-# Preview production build
-bun run preview
+   # Build for production (compiles code and generates sitemap)
+   bun run build
 
-# Generate sitemap
-bun run generate-sitemap
-```
+   # Preview production build locally
+   bun run preview
+   ```
 
 ## 🚀 Deployment
 
-Deployed on **Cloudflare Pages** via `wrangler deploy`. SPA routing is configured in `wrangler.jsonc`.
+- **Vercel**: Configured via `vercel.json`. Just link the repository to Vercel for automated builds.
+- **Cloudflare Pages**: SPA routing config is supported via wrangler configurations.
 
 ## 🎨 Design System
 
