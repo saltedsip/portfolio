@@ -22,24 +22,7 @@ const portfolioContent = fs.readFileSync(portfolioPath, "utf-8");
 const urlMatch = portfolioContent.match(/url:\s*["']([^"']+)["']/);
 const siteUrl = urlMatch ? urlMatch[1] : "https://www.talhakashif.com";
 
-// Extract sectionVisibility
-function extractVisibility(section: string): boolean {
-    const regex = new RegExp(`${section}:\\s*(true|false)`);
-    const match = portfolioContent.match(regex);
-    return match ? match[1] === "true" : false;
-}
-
-const visibility = {
-    hero: extractVisibility("hero"),
-    about: extractVisibility("about"),
-    projects: extractVisibility("projects"),
-    testimonials: extractVisibility("testimonials"),
-    contact: extractVisibility("contact"),
-};
-
 function extractProjectIds(): string[] {
-    if (!visibility.projects) return [];
-
     // This regex looks specifically for the 'projects' array section 
     // to avoid grabbing 'email', 'phone', or 'linkedin' IDs
     const projectsSection = portfolioContent.split('export const projects: Project[] = [')[1]?.split('];')[0];
@@ -72,20 +55,8 @@ const urls: SitemapUrl[] = [
     { loc: `${siteUrl}/`, lastmod: today, changefreq: "weekly", priority: "1.0" },
 ];
 
-if (visibility.about) {
-    urls.push({ loc: `${siteUrl}/about`, lastmod: today, changefreq: "monthly", priority: "0.8" });
-}
-
-if (visibility.contact) {
-    urls.push({ loc: `${siteUrl}/contact`, lastmod: today, changefreq: "monthly", priority: "0.7" });
-}
-
-if (visibility.projects) {
-    urls.push({ loc: `${siteUrl}/projects`, lastmod: today, changefreq: "weekly", priority: "0.9" });
-
-    for (const id of projectIds) {
-        urls.push({ loc: `${siteUrl}/projects/${id}`, lastmod: today, changefreq: "monthly", priority: "0.6" });
-    }
+for (const id of projectIds) {
+    urls.push({ loc: `${siteUrl}/projects/${id}`, lastmod: today, changefreq: "monthly", priority: "0.8" });
 }
 
 // Generate XML

@@ -23,7 +23,6 @@ import type {
   TestimonialsContent,
   Testimonial,
   FooterContent,
-  SectionVisibility,
 } from "@/types/portfolio";
 import visualbuilder from "../assets/projects/visualbuilder.webp";
 import tozan from "../assets/projects/tozan.webp";
@@ -76,7 +75,7 @@ export const contactLinks: ContactLink[] = [
     icon: "phone",
     href: "tel:+923266227895",
     showInNav: false,
-    showInContact: true,
+    showInContact: false,
   },
   {
     id: "linkedin",
@@ -87,16 +86,15 @@ export const contactLinks: ContactLink[] = [
     showInNav: true,
     showInContact: true,
   },
-  // Uncomment to enable:
-  // {
-  //   id: "github",
-  //   label: "GitHub",
-  //   value: "@saltedsip",
-  //   icon: "github",
-  //   href: "https://github.com/saltedsip",
-  //   showInNav: true,
-  //   showInContact: true,
-  // },
+  {
+    id: "github",
+    label: "GitHub",
+    value: "@saltedsip",
+    icon: "github",
+    href: "https://github.com/saltedsip",
+    showInNav: true,
+    showInContact: false,
+  },
   // {
   //   id: "twitter",
   //   label: "Twitter",
@@ -121,10 +119,10 @@ export const contactLinks: ContactLink[] = [
 // NAVIGATION
 // --------------------------------------------
 export const navLinks: NavLink[] = [
-  { label: "Home", href: "/", isRoute: true },
-  { label: "About", href: "/about", isRoute: true },
-  { label: "Projects", href: "/projects", isRoute: true },
-  { label: "Contact", href: "/contact", isRoute: true },
+  { label: "Home", href: "#home", isRoute: false },
+  { label: "About", href: "#about", isRoute: false },
+  { label: "Work", href: "#work", isRoute: false },
+  { label: "Contact", href: "#contact", isRoute: false },
 ];
 
 // --------------------------------------------
@@ -133,13 +131,12 @@ export const navLinks: NavLink[] = [
 export const heroContent: HeroContent = {
   greeting: "👋",
   headline: "Talha Kashif Hassan",
-  subheadline: "Full Stack Developer",
-  bio: "I help businesses and startups bring their ideas to life through clean, scalable code. As a Level 2 Fiverr seller, I've delivered 200+ projects—from sleek landing pages to full-featured SaaS dashboards—with a 4.9/5 client satisfaction rating.",
-  ctaText: "Get in touch",
+  subheadline: "Full Stack Developer for Startups & Agencies",
+  bio: "I turn product ideas into production-ready web applications. 200+ projects shipped for founders and agencies across 15+ countries — from high-converting landing pages to full-featured SaaS platforms — with a 4.9/5 client satisfaction rating.",
+  ctaText: "Start a Project",
   ctaLink: "#contact",
-  // Resume download button (leave empty to hide)
   resumeText: "Download Resume",
-  resumeLink: "/resume.pdf", // Add your resume PDF to public folder
+  resumeLink: "/resume.pdf",
 };
 
 // Hero badges/stats
@@ -155,8 +152,8 @@ export const heroBadges: HeroBadge[] = [
 export const aboutContent: AboutContent = {
   title: "About me",
   paragraphs: [
-    "I'm a full stack developer who loves building modern, scalable web applications that solve real problems. My core stack is React, Next.js, and Node.js, but I'm equally comfortable with Webflow, WordPress, and custom backend solutions.",
-    "I'm passionate about building products that make a real impact. Beyond client work, I'm actively working on my own SaaS ideas. I believe great software comes from understanding the problem first, then writing code.",
+    "I've spent 8+ years building web applications across e-commerce, SaaS, real estate, healthcare, and ed-tech — working directly with solo founders, marketing teams, and agency CTOs. My core stack is React, Next.js, and Node.js, but I've also delivered production work in Webflow, WordPress, and Python.",
+    "What sets me apart: I think in business outcomes, not just code. I've improved client page-load speeds by 40%, boosted engagement metrics by 20%, and increased organic traffic by 25% through performance and SEO work. I write software that ships fast and scales without breaking.",
   ],
 };
 
@@ -324,7 +321,7 @@ export const contactContent: ContactContent = {
   ctaTitle: "Ready to start a project?",
   ctaSubtitle: "Let's build something great together.",
   ctaButtonText: "Send me an email",
-  availability: "Taking on new projects for Q1 2026",
+  availability: "Available for new projects — let's talk",
 };
 
 // Helper exports for backward compatibility
@@ -345,8 +342,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "J. Anthony",
-    role: "",
-    company: "United States",
+    role: "Founder",
+    company: "Marketplace Startup, US",
     image: "",
     content:
       "Kashif did an amazing job! The website looks incredible and very professional. He was polite, communicative, and paid great attention to detail throughout the entire process. Super talented designer — highly recommended! 10/10",
@@ -355,8 +352,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     name: "Marcus B.",
-    role: "",
-    company: "Germany",
+    role: "Business Owner",
+    company: "E-commerce, Germany",
     image: "",
     content:
       "Absolutely wow! KASHIF is an outstanding professional, super friendly, and always reliable. He perfectly redesigned my website, making it look great on mobile as well. Very fast and competent service – always happy to work with him again!",
@@ -365,8 +362,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 3,
     name: "Sherry P.",
-    role: "",
-    company: "United Kingdom",
+    role: "Creative Director",
+    company: "Agency, UK",
     image: "",
     content:
       "If I could give this guy more stars, I would. Thanks a million for your support and patience! I will be back!",
@@ -375,8 +372,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 4,
     name: "Maxwell E.",
-    role: "",
-    company: "United States",
+    role: "Entrepreneur",
+    company: "SaaS Startup, US",
     image: "",
     content:
       "I know barely anything about website design. This guy was so professional and made sure he got it right. I'm very happy with the results — money very well spent. He saved me a lot of time of trial and error.",
@@ -385,8 +382,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 5,
     name: "David X.",
-    role: "",
-    company: "Australia",
+    role: "Product Manager",
+    company: "Tech Company, Australia",
     image: "",
     content:
       "Kashif went above and beyond to help get the job done promptly and efficiently. He was always happy to help with my requests. Very good communication and turnaround times. Would highly recommend him to anyone!",
@@ -395,8 +392,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 6,
     name: "Svenja M.",
-    role: "",
-    company: "Germany",
+    role: "Marketing Lead",
+    company: "Digital Agency, Germany",
     image: "",
     content:
       "I am beyond pleased with his work. Not only did he optimize my website for mobile, but he also gave me helpful suggestions to fix my site's SEO! Amazing experience — so friendly and responsive.",
@@ -405,8 +402,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 7,
     name: "Mike J.",
-    role: "",
-    company: "India",
+    role: "Founder",
+    company: "EdTech Platform, India",
     image: "",
     content:
       "Excellent Work — my best experience on Fiverr so far! Easy and quick service. Great communication. Did what he said he would do. If you are considering working with this guy, give him a chance. You won't regret it!",
@@ -415,8 +412,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 8,
     name: "Eddie O.",
-    role: "",
-    company: "United States",
+    role: "Operations Director",
+    company: "Consulting Firm, US",
     image: "",
     content:
       "The Seller works fast, solved problems quickly, and was very understanding. Also demonstrated strong leadership skills and is an over-achiever. The pricing was better than competitors for similar service!",
@@ -432,14 +429,4 @@ export const footerContent: FooterContent = {
   showSocialLinks: true,
 };
 
-// --------------------------------------------
-// SECTION VISIBILITY
-// Set to false to visually hide (content still accessible to search engines)
-// --------------------------------------------
-export const sectionVisibility: SectionVisibility = {
-  hero: true,
-  about: true,
-  projects: true,
-  testimonials: true,
-  contact: true,
-};
+

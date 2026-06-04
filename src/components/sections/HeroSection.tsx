@@ -1,8 +1,7 @@
 import { ArrowRight, Download, Briefcase, Star, Award } from "lucide-react";
 import { heroContent, personalInfo } from "@/data/portfolio";
-import { memo } from "react";
-import { Link } from "react-router-dom";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { memo } from "react";
 
 // Stats data with icons
 const stats = [
@@ -11,10 +10,6 @@ const stats = [
   { value: "Level 2", label: "Fiverr Seller", icon: <Award className="w-5 h-5 md:w-6 md:h-6 text-primary" /> },
 ];
 
-// Professional Oska-style highlight - straight rounded box with contrasting text
-// Using brand-aligned "Orange Glow" for harmony
-// Professional Oska-style highlight - Solid Text
-// User selected Option 1 but requested "one color" and "no underline"
 const Highlight = ({ children }: { children: React.ReactNode }) => (
   <span className="text-primary font-extrabold">
     {children}
@@ -27,12 +22,8 @@ const HeroSection = () => (
     <div className="mb-8 md:mb-12">
       {/* Main Headline with professional highlight */}
       <FadeIn delay={100} direction="up">
-        <h1 className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-6 leading-[1.3]">
-          Hey, I'm {personalInfo.firstName}. A
-          <br />
-          <Highlight>{heroContent.subheadline}</Highlight>
-          <br />
-          with years of Experience
+        <h1 className="text-[2rem] sm:text-[3rem] md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]">
+          Hey, I'm {personalInfo.firstName}. <span className="block sm:inline"><br className="hidden sm:inline" />I'm a <Highlight>{heroContent.subheadline}</Highlight>.</span>
         </h1>
       </FadeIn>
 
@@ -46,13 +37,20 @@ const HeroSection = () => (
       {/* CTA Buttons - Oska pill style */}
       <FadeIn delay={500} direction="up">
         <div className="flex flex-wrap gap-4">
-          <Link
-            to="/contact"
+          <a
+            href={heroContent.ctaLink || "#contact"}
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById("contact");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-all hover:scale-105 active:scale-95"
           >
-            Contact Me
+            {heroContent.ctaText || "Contact Me"}
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
           {heroContent.resumeText && (
             <a
               href={heroContent.resumeLink}

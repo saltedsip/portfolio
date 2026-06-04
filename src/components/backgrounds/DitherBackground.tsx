@@ -79,8 +79,9 @@ function DitherBackground({
     const resize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = window.setTimeout(() => {
-        canvas.width = Math.floor(window.innerWidth / effectivePixelSize);
-        canvas.height = Math.floor(window.innerHeight / effectivePixelSize);
+        const parent = canvas.parentElement || document.body;
+        canvas.width = Math.floor(parent.clientWidth / effectivePixelSize);
+        canvas.height = Math.floor(parent.clientHeight / effectivePixelSize);
         canvas.style.width = '100%';
         canvas.style.height = '100%';
         canvas.style.imageRendering = 'pixelated';
@@ -89,8 +90,9 @@ function DitherBackground({
     };
 
     // Initial resize without debounce
-    canvas.width = Math.floor(window.innerWidth / effectivePixelSize);
-    canvas.height = Math.floor(window.innerHeight / effectivePixelSize);
+    const parent = canvas.parentElement || document.body;
+    canvas.width = Math.floor(parent.clientWidth / effectivePixelSize);
+    canvas.height = Math.floor(parent.clientHeight / effectivePixelSize);
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.style.imageRendering = 'pixelated';
@@ -249,7 +251,7 @@ function DitherBackground({
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none z-0 ${isReady ? 'animate-fade-in' : 'opacity-0'} ${className}`}
+      className={`absolute inset-0 pointer-events-none z-0 ${isReady ? 'animate-fade-in' : 'opacity-0'} ${className}`}
       style={{
         animation: isReady ? 'fadeIn 1.5s ease-in forwards' : 'none',
       }}

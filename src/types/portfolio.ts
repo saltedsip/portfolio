@@ -128,10 +128,4 @@ export interface FooterContent {
     showSocialLinks: boolean;
 }
 
-export interface SectionVisibility {
-    hero: boolean;
-    about: boolean;
-    projects: boolean;
-    testimonials: boolean;
-    contact: boolean;
-}
+

@@ -1,6 +1,6 @@
 import { ArrowUp } from "lucide-react";
-import { personalInfo, navLinks, sectionVisibility, navSocialLinks } from "@/data/portfolio";
-import { useState, useMemo, useCallback, useEffect, memo } from "react";
+import { personalInfo, navLinks, navSocialLinks } from "@/data/portfolio";
+import { useState, useCallback, useEffect, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // TK Logo SVG Component
@@ -40,32 +40,64 @@ const MenuIcon = memo(({ isOpen, onClick }: { isOpen: boolean; onClick: () => vo
 ));
 
 MenuIcon.displayName = "MenuIcon";
+
+// Smooth scroll to an anchor section
+const scrollToSection = (href: string) => {
+  const id = href.replace("#", "");
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
 interface HeaderProps {
   isScrolled: boolean;
 }
 
 export const Header = ({ isScrolled }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-  // Filter nav links based on section visibility
-  const visibleNavLinks = useMemo(() => {
-    return navLinks.filter(link => {
-      const path = link.href.replace("/", "");
-      const sectionId = path === "" ? "hero" : path;
-      return sectionVisibility[sectionId as keyof typeof sectionVisibility] !== false;
+  // Track which section is currently in view (only on homepage)
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -60% 0px" }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
-  }, []);
 
-  const isLinkActive = useCallback((link: typeof navLinks[0]) => {
-    if (link.href === "/") {
-      return location.pathname === "/";
-    }
-    return location.pathname.startsWith(link.href);
-  }, [location.pathname]);
+    return () => observer.disconnect();
+  }, [isHomePage]);
+
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent, link: (typeof navLinks)[0]) => {
+      if (isHomePage) {
+        e.preventDefault();
+        scrollToSection(link.href);
+        setIsMobileMenuOpen(false);
+      }
+      // If not on homepage, let Link handle navigation to /{hash}
+    },
+    [isHomePage]
+  );
 
   const toggleMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(prev => !prev);
+    setIsMobileMenuOpen((prev) => !prev);
   }, []);
 
   const closeMobileMenu = useCallback(() => {
@@ -75,46 +107,82 @@ export const Header = ({ isScrolled }: HeaderProps) => {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
-  // Social items for footer - use navSocialLinks from unified contactLinks
-  const socialItems = useMemo(() =>
-    navSocialLinks.map(link => ({ label: link.label, link: link.href }))
-    , []);
+  // Social items for footer
+  const socialItems = navSocialLinks.map((link) => ({
+    label: link.label,
+    link: link.href,
+  }));
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4">
-        {/* Floating pill container - Oska style */}
-        <div className={`max-w-4xl mx-auto transition-all duration-300 ${isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-lg border border-border"
-          : "bg-card/80 backdrop-blur-sm border border-border/50"
-          } rounded-full px-2 py-2`}>
+        {/* Floating pill container */}
+        <div
+          className={`max-w-4xl mx-auto transition-all duration-300 ${isScrolled
+            ? "bg-card/95 backdrop-blur-md shadow-lg border border-border"
+            : "bg-card/80 backdrop-blur-sm border border-border/50"
+            } rounded-full px-2 py-2`}
+        >
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="text-primary hover:opacity-80 transition-opacity pl-4" aria-label="Talha Kashif Hassan - Home">
-              <TKLogo className="h-6 w-auto" />
-            </Link>
+            {isHomePage ? (
+              <a
+                href="#home"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#home");
+                }}
+                className="text-primary hover:opacity-80 transition-opacity pl-4"
+                aria-label="Talha Kashif Hassan - Home"
+              >
+                <TKLogo className="h-6 w-auto" />
+              </a>
+            ) : (
+              <Link
+                to="/"
+                className="text-primary hover:opacity-80 transition-opacity pl-4"
+                aria-label="Talha Kashif Hassan - Home"
+              >
+                <TKLogo className="h-6 w-auto" />
+              </Link>
+            )}
 
-            {/* Desktop Nav - Center */}
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
-              {visibleNavLinks.map((link) => {
-                const isActive = isLinkActive(link);
+              {navLinks.map((link) => {
+                const isActive =
+                  isHomePage && activeSection === link.href.replace("#", "");
+
+                if (isHomePage) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link)}
+                      className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${isActive
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                        }`}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.label}
-                    to={link.href}
-                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${isActive
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                      }`}
+                    to={`/${link.href}`}
+                    className="px-4 py-2 text-sm font-medium rounded-full transition-all text-muted-foreground hover:text-foreground"
                   >
                     {link.label}
                   </Link>
@@ -122,16 +190,30 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               })}
             </nav>
 
+            {/* Desktop CTA */}
             <div className="hidden md:block">
-              <a
-                href={`mailto:${personalInfo.email}?subject=Project%20Inquiry`}
-                className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:opacity-90 transition-all"
-              >
-                Contact Me
-              </a>
+              {isHomePage ? (
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#contact");
+                  }}
+                  className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:opacity-90 transition-all"
+                >
+                  Start a Project
+                </a>
+              ) : (
+                <Link
+                  to="/#contact"
+                  className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:opacity-90 transition-all"
+                >
+                  Start a Project
+                </Link>
+              )}
             </div>
 
-            {/* Mobile: Two-line Menu Button */}
+            {/* Mobile: Menu Button */}
             <div className="md:hidden mr-2 text-foreground">
               <MenuIcon isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
             </div>
@@ -139,7 +221,7 @@ export const Header = ({ isScrolled }: HeaderProps) => {
         </div>
       </header>
 
-      {/* Mobile Menu - Fullscreen Overlay with Staggered Animation */}
+      {/* Mobile Menu - Fullscreen Overlay */}
       <div
         className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ${isMobileMenuOpen
           ? "opacity-100 pointer-events-auto"
@@ -165,20 +247,22 @@ export const Header = ({ isScrolled }: HeaderProps) => {
           </div>
         </button>
 
-        {/* Menu Content - with safe area insets for notched devices */}
+        {/* Menu Content */}
         <nav
           className="relative z-10 flex flex-col justify-center h-full px-8 py-20"
           style={{
-            paddingTop: 'max(5rem, env(safe-area-inset-top, 0px))',
-            paddingBottom: 'max(5rem, env(safe-area-inset-bottom, 0px))',
-            paddingLeft: 'max(2rem, env(safe-area-inset-left, 0px))',
-            paddingRight: 'max(2rem, env(safe-area-inset-right, 0px))'
+            paddingTop: "max(5rem, env(safe-area-inset-top, 0px))",
+            paddingBottom: "max(5rem, env(safe-area-inset-bottom, 0px))",
+            paddingLeft: "max(2rem, env(safe-area-inset-left, 0px))",
+            paddingRight: "max(2rem, env(safe-area-inset-right, 0px))",
           }}
         >
-          {/* Navigation Links with Stagger Animation */}
+          {/* Navigation Links */}
           <div className="space-y-2">
-            {visibleNavLinks.map((link, index) => {
-              const isActive = isLinkActive(link);
+            {navLinks.map((link, index) => {
+              const isActive =
+                isHomePage && activeSection === link.href.replace("#", "");
+
               return (
                 <div
                   key={link.label}
@@ -187,19 +271,31 @@ export const Header = ({ isScrolled }: HeaderProps) => {
                     : "opacity-0 translate-y-8"
                     }`}
                   style={{
-                    transitionDelay: isMobileMenuOpen ? `${150 + index * 75}ms` : "0ms"
+                    transitionDelay: isMobileMenuOpen
+                      ? `${150 + index * 75}ms`
+                      : "0ms",
                   }}
                 >
-                  <Link
-                    to={link.href}
-                    className={`block text-4xl sm:text-5xl font-bold tracking-tight py-2 transition-colors ${isActive ? "text-primary" : "text-foreground hover:text-primary"
-                      }`}
-                    onClick={closeMobileMenu}
-                  >
-                    <span className="inline-block">
-                      {link.label}
-                    </span>
-                  </Link>
+                  {isHomePage ? (
+                    <a
+                      href={link.href}
+                      className={`block text-4xl sm:text-5xl font-bold tracking-tight py-2 transition-colors ${isActive
+                        ? "text-primary"
+                        : "text-foreground hover:text-primary"
+                        }`}
+                      onClick={(e) => handleNavClick(e, link)}
+                    >
+                      <span className="inline-block">{link.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={`/${link.href}`}
+                      className="block text-4xl sm:text-5xl font-bold tracking-tight py-2 transition-colors text-foreground hover:text-primary"
+                      onClick={closeMobileMenu}
+                    >
+                      <span className="inline-block">{link.label}</span>
+                    </Link>
+                  )}
                 </div>
               );
             })}
@@ -212,16 +308,32 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               : "opacity-0 translate-y-8"
               }`}
             style={{
-              transitionDelay: isMobileMenuOpen ? `${150 + visibleNavLinks.length * 75}ms` : "0ms"
+              transitionDelay: isMobileMenuOpen
+                ? `${150 + navLinks.length * 75}ms`
+                : "0ms",
             }}
           >
-            <a
-              href={`mailto:${personalInfo.email}?subject=Project%20Inquiry`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full text-lg font-medium"
-              onClick={closeMobileMenu}
-            >
-              Contact Me
-            </a>
+            {isHomePage ? (
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#contact");
+                  closeMobileMenu();
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full text-lg font-medium"
+              >
+                Start a Project
+              </a>
+            ) : (
+              <Link
+                to="/#contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full text-lg font-medium"
+                onClick={closeMobileMenu}
+              >
+                Start a Project
+              </Link>
+            )}
           </div>
 
           {/* Social Links */}
@@ -232,7 +344,9 @@ export const Header = ({ isScrolled }: HeaderProps) => {
                 : "opacity-0 translate-y-8"
                 }`}
               style={{
-                transitionDelay: isMobileMenuOpen ? `${200 + visibleNavLinks.length * 75}ms` : "0ms"
+                transitionDelay: isMobileMenuOpen
+                  ? `${200 + navLinks.length * 75}ms`
+                  : "0ms",
               }}
             >
               <p className="text-sm text-primary font-medium uppercase tracking-wide mb-3">
@@ -261,15 +375,19 @@ export const Header = ({ isScrolled }: HeaderProps) => {
 };
 
 // Scroll to Top Button
-export const ScrollToTop = memo(({ visible, onClick }: { visible: boolean; onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    className={`fixed bottom-6 right-6 z-40 p-3 bg-primary text-primary-foreground rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
-    aria-label="Scroll to top"
-  >
-    <ArrowUp className="w-5 h-5" />
-  </button>
-));
+export const ScrollToTop = memo(
+  ({ visible, onClick }: { visible: boolean; onClick: () => void }) => (
+    <button
+      onClick={onClick}
+      className={`fixed bottom-6 right-6 z-40 p-3 bg-primary text-primary-foreground rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${visible
+        ? "opacity-100 translate-y-0"
+        : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      aria-label="Scroll to top"
+    >
+      <ArrowUp className="w-5 h-5" />
+    </button>
+  )
+);
 
 ScrollToTop.displayName = "ScrollToTop";

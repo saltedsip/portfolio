@@ -2,12 +2,8 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import HomePage from "./pages/HomePage";
-import { sectionVisibility } from "@/data/portfolio";
 
-// Lazy load non-critical pages for better initial load performance
-const AboutPage = lazy(() => import("./pages/AboutPage"));
-const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
+// Lazy load non-critical pages
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
@@ -18,7 +14,6 @@ const PageLoader = () => (
   </div>
 );
 
-// Wrap lazy component with Suspense
 const LazyRoute = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<PageLoader />}>{children}</Suspense>
 );
@@ -28,18 +23,7 @@ const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {sectionVisibility.about && (
-          <Route path="/about" element={<LazyRoute><AboutPage /></LazyRoute>} />
-        )}
-        {sectionVisibility.projects && (
-          <>
-            <Route path="/projects" element={<LazyRoute><ProjectsPage /></LazyRoute>} />
-            <Route path="/projects/:slug" element={<LazyRoute><ProjectDetailPage /></LazyRoute>} />
-          </>
-        )}
-        {sectionVisibility.contact && (
-          <Route path="/contact" element={<LazyRoute><ContactPage /></LazyRoute>} />
-        )}
+        <Route path="/projects/:slug" element={<LazyRoute><ProjectDetailPage /></LazyRoute>} />
         <Route path="*" element={<LazyRoute><NotFoundPage /></LazyRoute>} />
       </Routes>
     </BrowserRouter>
@@ -47,5 +31,3 @@ const App = () => (
 );
 
 export default App;
-
-

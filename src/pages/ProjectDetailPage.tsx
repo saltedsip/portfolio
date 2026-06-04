@@ -16,7 +16,7 @@ const ProjectDetailPage = () => {
         <div className="min-h-[60vh] flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-4">Project not found</h1>
           <Link
-            to="/projects"
+            to="/#work"
             className="inline-flex items-center gap-2 text-primary hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -38,7 +38,7 @@ const ProjectDetailPage = () => {
       <article className="py-8">
         {/* Back link */}
         <Link
-          to="/projects"
+          to="/#work"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
