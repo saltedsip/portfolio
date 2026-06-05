@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackClassName?: string;
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 export function OptimizedImage({
@@ -11,6 +12,7 @@ export function OptimizedImage({
   className,
   fallbackClassName,
   loading = "lazy",
+  fetchPriority,
   ...props
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,6 +45,7 @@ export function OptimizedImage({
         )}
         onLoad={() => setIsLoaded(true)}
         {...props}
+        {...{ fetchpriority: fetchPriority }}
       />
     </div>
   );
