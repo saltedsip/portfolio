@@ -91,7 +91,7 @@ const HomePage = () => {
             <Suspense fallback={null}>
               <DitherBackground
                 waveColor="#F85A3E"
-                pixelSize={4}
+                pixelSize={2}
                 speed={0.0003}
               />
             </Suspense>

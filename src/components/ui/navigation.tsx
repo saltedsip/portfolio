@@ -1,7 +1,8 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Sun, Moon } from "lucide-react";
 import { personalInfo, navLinks, navSocialLinks } from "@/data/portfolio";
 import { useState, useCallback, useEffect, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "@/hooks/useTheme";
 
 // TK Logo SVG Component
 export const TKLogo = memo(({ className }: { className?: string }) => (
@@ -57,6 +58,7 @@ interface HeaderProps {
 export const Header = ({ isScrolled }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -190,8 +192,15 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               })}
             </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden md:block">
+            {/* Desktop CTA & Theme Toggle */}
+            <div className="hidden md:flex items-center gap-3">
+              <button
+                onClick={toggleTheme}
+                className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              </button>
               {isHomePage ? (
                 <a
                   href="#contact"
@@ -213,8 +222,15 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               )}
             </div>
 
-            {/* Mobile: Menu Button */}
-            <div className="md:hidden mr-2 text-foreground">
+            {/* Mobile: Theme Toggle & Menu Button */}
+            <div className="md:hidden flex items-center gap-1.5 mr-2 text-foreground">
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              </button>
               <MenuIcon isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
             </div>
           </div>

@@ -6,17 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Talha Hassan - Full Stack Developer</title>
 
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <!-- Critical CSS - Inlined to prevent render-blocking and white flash -->
   <style>
     /* Critical above-the-fold styles for instant first paint */
     :root {
+      --background: 210 20% 98%;
+      --foreground: 215 28% 12%;
+      --card: 0 0% 100%;
+      --primary: 14 100% 60%;
+      --primary-foreground: 0 0% 100%;
+      --border: 210 20% 90%;
+      --muted-foreground: 215 10% 50%;
+    }
+
+    .dark {
       --background: 215 28% 7%;
       --foreground: 0 0% 100%;
       --card: 215 22% 11%;
       --primary: 14 100% 60%;
       --primary-foreground: 215 28% 7%;
       --border: 215 14% 22%;
-      --muted-foreground: 215 10% 55%
+      --muted-foreground: 215 10% 55%;
     }
 
     *,
@@ -24,7 +45,7 @@
     ::after {
       box-sizing: border-box;
       border-width: 0;
-      border-style: solid
+      border-style: solid;
     }
 
     html {
@@ -32,21 +53,20 @@
       -webkit-text-size-adjust: 100%;
       font-family: system-ui, sans-serif;
       scroll-behavior: smooth;
-      color-scheme: dark
     }
 
     body {
       margin: 0;
-      background-color: hsl(215 28% 7%);
-      color: hsl(0 0% 100%);
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
       font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 15px;
       line-height: 1.65;
-      -webkit-font-smoothing: antialiased
+      -webkit-font-smoothing: antialiased;
     }
 
     #root {
-      min-height: 100vh
+      min-height: 100vh;
     }
 
     /* Prevent layout shift from loading fonts */
@@ -58,7 +78,7 @@
     h6 {
       font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 700;
-      letter-spacing: -0.03em
+      letter-spacing: -0.03em;
     }
   </style>
 

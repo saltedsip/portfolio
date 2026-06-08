@@ -6,66 +6,55 @@
 
 @layer base {
   :root {
-    /* TK Logo-Matched Dark Theme - Deep Navy + Vermillion */
-    --background: 215 28% 7%;
-    /* Deep navy #0d1117 */
-    --foreground: 0 0% 100%;
-    /* White */
-
-    /* Card/Surface Colors */
-    --card: 215 22% 11%;
-    /* Lighter navy #161b22 */
-    --card-foreground: 0 0% 100%;
-    /* White */
-
-    /* Primary - Vermillion Orange (from logo) */
-    --primary: 14 100% 60%;
-    /* Vermillion #ff5c33 */
-    --primary-foreground: 215 28% 7%;
-    /* Deep navy #0d1117 for contrast on Vermillion */
-
-    /* Secondary */
-    --secondary: 215 22% 11%;
-    /* Lighter navy */
-    --secondary-foreground: 0 0% 100%;
-    /* White */
-
-    /* Muted */
-    --muted: 215 15% 18%;
-    /* Muted navy */
-    --muted-foreground: 215 10% 55%;
-    /* Gray #8b949e */
-
-    /* Border */
-    --border: 215 14% 22%;
-    /* Subtle border #30363d */
-    --input: 215 22% 11%;
-    --ring: 14 100% 60%;
-    /* Vermillion */
-
-    /* Container specific */
-    --container-bg: 215 22% 11%;
-    /* Lighter navy */
-    --container-border: 215 14% 22%;
-    /* Subtle border */
-
-    /* Radius - Sharper for geometric look */
+    --background: 30 24% 98%;
+    --foreground: 215 28% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 12%;
+    --primary: 14 95% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 12% 94%;
+    --secondary-foreground: 215 28% 12%;
+    --muted: 30 12% 94%;
+    --muted-foreground: 215 16% 38%;
+    --border: 30 12% 88%;
+    --input: 30 12% 94%;
+    --ring: 14 95% 58%;
+    --container-bg: 0 0% 100%;
+    --container-border: 30 12% 88%;
     --radius: 8px;
   }
-}
 
-@layer base {
+  .dark {
+    --background: 215 28% 7%;
+    --foreground: 0 0% 100%;
+    --card: 215 22% 11%;
+    --card-foreground: 0 0% 100%;
+    --primary: 14 100% 60%;
+    --primary-foreground: 215 28% 7%;
+    --secondary: 215 22% 11%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 15% 18%;
+    --muted-foreground: 215 10% 55%;
+    --border: 215 14% 22%;
+    --input: 215 22% 11%;
+    --ring: 14 100% 60%;
+    --container-bg: 215 22% 11%;
+    --container-border: 215 14% 22%;
+  }
+
   * {
     @apply border-border;
   }
 
   html {
     @apply scroll-smooth;
-    /* Dark mode theming - proper scrollbar/input colors */
-    color-scheme: dark;
-    /* Touch optimization - prevent double-tap zoom delay */
+    color-scheme: light;
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(248, 90, 62, 0.2);
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
