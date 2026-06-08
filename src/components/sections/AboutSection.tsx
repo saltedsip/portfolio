@@ -1,4 +1,4 @@
-import { GraduationCap, Award as AwardIcon, Briefcase } from "lucide-react";
+import { GraduationCap, Award as AwardIcon, Briefcase, ExternalLink } from "lucide-react";
 import { aboutContent, skills, workExperience, education, certifications, experienceTitle, educationTitle } from "@/data/portfolio";
 
 const AboutSection = () => (
@@ -96,13 +96,39 @@ const AboutSection = () => (
               <p className="text-sm text-primary">{education.institution}</p>
             </div>
           )}
-          {certifications.map((cert, i) => (
-            <div key={i} className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-colors">
-              <AwardIcon className="w-8 h-8 text-primary mb-4" />
-              <h4 className="font-semibold mb-1">{cert.title}</h4>
-              <p className="text-sm text-primary">{cert.issuer} · {cert.year}</p>
-            </div>
-          ))}
+          {certifications.map((cert, i) => {
+            const cardContent = (
+              <>
+                <div className="flex justify-between items-start mb-4">
+                  <AwardIcon className="w-8 h-8 text-primary" />
+                  {cert.link && (
+                    <ExternalLink className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary transition-colors duration-300" />
+                  )}
+                </div>
+                <h4 className="font-semibold mb-1">{cert.title}</h4>
+                <p className="text-sm text-primary">{cert.issuer} · {cert.year}</p>
+              </>
+            );
+
+            return cert.link ? (
+              <a
+                key={i}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-card border border-border rounded-2xl p-6 hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 block h-full text-left"
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <div 
+                key={i} 
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 block h-full text-left"
+              >
+                {cardContent}
+              </div>
+            );
+          })}
         </div>
       </div>
     )}

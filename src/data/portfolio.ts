@@ -31,25 +31,25 @@ import tozan from "../assets/projects/tozan.webp";
 // SITE CONFIG
 // --------------------------------------------
 export const siteConfig: SiteConfig = {
-  title: "Talha Kashif Hassan - Full Stack Developer",
+  title: "Talha Hassan - Full Stack Developer",
   description:
     "Full stack developer specializing in React, Next.js, and Node.js.",
-  url: "https://www.talhakashif.com",
-  ogImage: "https://www.talhakashif.com/og_image.png",
+  url: "https://www.talhahassan.me",
+  ogImage: "https://www.talhahassan.me/og_image.png",
   keywords: "full stack developer, react, nextjs, nodejs, freelance",
 };
 
-const emailAddress = ["talhakashif.dev", "gmail.com"].join("@");
+const emailAddress = ["talhahassan.me", "gmail.com"].join("@");
 
 // --------------------------------------------
 // PERSONAL INFO
 // --------------------------------------------
 export const personalInfo: PersonalInfo = {
-  name: "Talha Kashif Hassan",
+  name: "Talha Hassan",
   firstName: "Talha",
   title: "Full Stack Developer",
   email: emailAddress,
-  phone: "+92 326 622 7895",
+  phone: "+92 311 650 0410",
   location: "Remote, Worldwide",
 };
 
@@ -71,9 +71,9 @@ export const contactLinks: ContactLink[] = [
   {
     id: "phone",
     label: "Phone",
-    value: "+92 326 622 7895",
+    value: "+92 311 650 0410",
     icon: "phone",
-    href: "tel:+923266227895",
+    href: "tel:+923116500410",
     showInNav: false,
     showInContact: false,
   },
@@ -82,7 +82,7 @@ export const contactLinks: ContactLink[] = [
     label: "LinkedIn",
     value: "Connect with me",
     icon: "linkedin",
-    href: "https://linkedin.com/in/talha-kashif-hassan",
+    href: "https://www.linkedin.com/in/talha-hassan-dev/",
     showInNav: true,
     showInContact: true,
   },
@@ -104,15 +104,15 @@ export const contactLinks: ContactLink[] = [
   //   showInNav: true,
   //   showInContact: false,
   // },
-  // {
-  //   id: "fiverr",
-  //   label: "Fiverr",
-  //   value: "Hire me",
-  //   icon: "fiverr",
-  //   href: "https://fiverr.com/yourprofile",
-  //   showInNav: false,
-  //   showInContact: true,
-  // },
+  {
+    id: "fiverr",
+    label: "Fiverr",
+    value: "View my profile",
+    icon: "fiverr",
+    href: "https://www.fiverr.com/kashif_h",
+    showInNav: false,
+    showInContact: true,
+  },
 ];
 
 // --------------------------------------------
@@ -130,7 +130,7 @@ export const navLinks: NavLink[] = [
 // --------------------------------------------
 export const heroContent: HeroContent = {
   greeting: "👋",
-  headline: "Talha Kashif Hassan",
+  headline: "Talha Hassan",
   subheadline: "Full Stack Developer for Startups & Agencies",
   bio: "I turn product ideas into production-ready web applications. 200+ projects shipped for founders and agencies across 15+ countries — from high-converting landing pages to full-featured SaaS platforms — with a 4.9/5 client satisfaction rating.",
   ctaText: "Start a Project",
@@ -141,9 +141,9 @@ export const heroContent: HeroContent = {
 
 // Hero badges/stats
 export const heroBadges: HeroBadge[] = [
-  { icon: "award", label: "Level 2 Seller" },
-  { icon: "star", label: "4.9/5 rating" },
-  { icon: "clock", label: "24hr response" },
+  { icon: "award", label: "200+ Shipped" },
+  { icon: "star", label: "4.9/5 Client Rating" },
+  { icon: "briefcase", label: "Open to Internships / Dev Roles" },
 ];
 
 // --------------------------------------------
@@ -152,7 +152,7 @@ export const heroBadges: HeroBadge[] = [
 export const aboutContent: AboutContent = {
   title: "About me",
   paragraphs: [
-    "I've spent 8+ years building web applications across e-commerce, SaaS, real estate, healthcare, and ed-tech — working directly with solo founders, marketing teams, and agency CTOs. My core stack is React, Next.js, and Node.js, but I've also delivered production work in Webflow, WordPress, and Python.",
+    "I build web applications across e-commerce, SaaS, real estate, healthcare, and ed-tech — collaborating with founders, product teams, and businesses to launch high-performance products. My core stack is React, Next.js, and Node.js, but I've also delivered production work in Webflow, WordPress, and Python.",
     "What sets me apart: I think in business outcomes, not just code. I've improved client page-load speeds by 40%, boosted engagement metrics by 20%, and increased organic traffic by 25% through performance and SEO work. I write software that ships fast and scales without breaking.",
   ],
 };
@@ -178,7 +178,7 @@ export const skills: Skills = {
     "MongoDB",
     "Firebase",
   ],
-  Tools: ["Git", "Webflow", "WordPress", "Figma"],
+  Tools: ["Git", "Webflow", "WordPress", "Figma", "AWS"],
 };
 
 // --------------------------------------------
@@ -189,24 +189,24 @@ export const experienceTitle = "Experience";
 export const workExperience: WorkExperience[] = [
   {
     id: 1,
-    company: "Fiverr",
-    title: "Freelance Full Stack Developer",
+    company: "Independent Contracting (Fiverr)",
+    title: "Full Stack Developer",
     period: "03.2017 – Present",
     isActive: true,
     highlights: [
-      "Delivered 200+ web development projects with 4.9/5 satisfaction rating.",
-      "Achieved Level 2 seller status, increasing repeat business by 40%.",
+      "Architected, built, and shipped 200+ custom web applications and responsive landing pages for global clients.",
+      "Maintained 4.9/5 satisfaction rating and high retention by focusing on fast load times, clean code, and SEO best practices.",
     ],
     tags: ["React", "Next.js", "Node.js", "TypeScript", "MongoDB"],
   },
   {
     id: 2,
     company: "Aardig",
-    title: "Webflow Developer",
+    title: "Webflow Developer (Contract)",
     period: "06.2022 – 04.2023",
     isActive: false,
     highlights: [
-      "Improved user engagement metrics by 20% through custom interactions.",
+      "Improved user engagement metrics by 20% through custom interactive modules.",
       "Achieved 40% increase in page load speeds with performance optimization.",
     ],
     tags: ["Webflow", "Figma", "GSAP", "CSS3"],
@@ -214,12 +214,12 @@ export const workExperience: WorkExperience[] = [
   {
     id: 3,
     company: "DeBetaStudent",
-    title: "WordPress Developer",
+    title: "WordPress Developer (Contract)",
     period: "12.2018 – 06.2022",
     isActive: false,
     highlights: [
-      "Developed 15+ WordPress and Wix websites with 40% engagement increase.",
-      "Boosted organic traffic by 25% through advanced SEO techniques.",
+      "Developed 15+ high-converting WordPress and Wix web environments with a 40% increase in average user session duration.",
+      "Boosted organic search traffic by 25% through advanced Technical SEO techniques.",
     ],
     tags: ["WordPress", "PHP", "MySQL", "SEO"],
   },
@@ -240,11 +240,13 @@ export const certifications: Certification[] = [
     title: "Code In Place",
     issuer: "Stanford University",
     year: "2025",
+    link: "https://codeinplace.stanford.edu/cip5/certificate/9jfltw",
   },
   {
     title: "Front-End Developer Specialization",
     issuer: "Meta",
     year: "2023",
+    link: "https://www.coursera.org/account/accomplishments/specialization/LTL2UCCXNXTR",
   },
 ];
 
@@ -425,7 +427,7 @@ export const testimonials: Testimonial[] = [
 // FOOTER
 // --------------------------------------------
 export const footerContent: FooterContent = {
-  copyright: `© ${new Date().getFullYear()} Talha Kashif Hassan`,
+  copyright: `© ${new Date().getFullYear()} Talha Hassan`,
   showSocialLinks: true,
 };
 

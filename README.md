@@ -8,7 +8,7 @@ A modern, performant portfolio website built with React, TypeScript, TailwindCSS
 - **Case Study Routing** with React Router for detailed project deep-dives
 - **Dark Theme** with deep navy background and vermillion (#F85A3E) accents
 - **Scoped Animated Background** with a custom dithered simplex-noise canvas overlay on the Hero section, smoothly dissolving into other sections via a frosted-glass blur fade
-- **Interactive Lead Capture Form** with client-side validation, success panel states, and Formspree API integration
+- **Interactive Lead Capture Form** with client-side validation, success panel states, and Forminit API integration
 - **Fully Responsive** mobile-first design (320px to 4K)
 - **Centralized Config** — update all content inside `src/data/portfolio.ts`
 - **Testimonials Carousel** with auto-rotation and pause on hover
@@ -49,7 +49,7 @@ A modern, performant portfolio website built with React, TypeScript, TailwindCSS
 - Input size `text-base` to prevent iOS automatic zoom on focus
 
 ### Security
-- Environment variable configuration (`.env` file) for API tokens (`VITE_FORMSPREE_ID`)
+- Environment variable configuration (`.env` file) for API tokens (`VITE_FORMINIT_ID`)
 - External links use `rel="noopener noreferrer"`
 - `.env` files ignored in `.gitignore`
 
@@ -106,7 +106,7 @@ Edit `src/data/portfolio.ts` to update everything:
 1. Set up your environment variables:
    ```bash
    cp .env.example .env
-   # Add your Formspree ID to VITE_FORMSPREE_ID
+   # Add your Forminit ID to VITE_FORMINIT_ID
    ```
 
 2. Dev commands:

@@ -21,17 +21,25 @@ const ContactSection = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
+    const stateKey = name === "fi-sender-fullName"
+      ? "name"
+      : name === "fi-sender-email"
+      ? "email"
+      : name === "fi-text-message"
+      ? "message"
+      : name;
+
+    setFormData((prev) => ({ ...prev, [stateKey]: value }));
+    if (errors[stateKey]) {
       setErrors((prev) => {
         const next = { ...prev };
-        delete next[name];
+        delete next[stateKey];
         return next;
       });
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validation
@@ -55,14 +63,13 @@ const ContactSection = () => {
     setStatus("submitting");
 
     try {
-      const formspreeId = import.meta.env.VITE_FORMSPREE_ID || "xpwqnezd";
-      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+      const forminitId = import.meta.env.VITE_FORMINIT_ID || "qdnpd8mk1xv";
+      const response = await fetch(`https://forminit.com/f/${forminitId}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: new FormData(e.currentTarget),
       });
 
       if (response.ok) {
@@ -219,7 +226,7 @@ const ContactSection = () => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="fi-sender-fullName"
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="John Doe"
@@ -242,7 +249,7 @@ const ContactSection = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  name="fi-sender-email"
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="john@example.com"
@@ -264,7 +271,7 @@ const ContactSection = () => {
                 </label>
                 <textarea
                   id="message"
-                  name="message"
+                  name="fi-text-message"
                   rows={5}
                   value={formData.message}
                   onChange={handleInputChange}

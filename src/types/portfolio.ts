@@ -79,6 +79,7 @@ export interface Certification {
     title: string;
     issuer: string;
     year: string;
+    link?: string;
 }
 
 export interface ProjectsContent {
