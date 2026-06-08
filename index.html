@@ -8,7 +8,7 @@
 
   <script>
     (function() {
-      const theme = localStorage.getItem('theme') || 'light';
+      const theme = localStorage.getItem('theme') || 'dark';
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
       } else {
@@ -21,13 +21,13 @@
   <style>
     /* Critical above-the-fold styles for instant first paint */
     :root {
-      --background: 210 20% 98%;
+      --background: 30 24% 98%;
       --foreground: 215 28% 12%;
       --card: 0 0% 100%;
-      --primary: 14 100% 60%;
+      --primary: 14 95% 58%;
       --primary-foreground: 0 0% 100%;
-      --border: 210 20% 90%;
-      --muted-foreground: 215 10% 50%;
+      --border: 30 12% 88%;
+      --muted-foreground: 215 16% 38%;
     }
 
     .dark {

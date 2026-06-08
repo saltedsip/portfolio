@@ -5,14 +5,14 @@ export type Theme = "light" | "dark";
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      // First check localStorage, then fall back to document class, defaulting to 'light'
+      // First check localStorage, then fall back to document class, defaulting to 'dark'
       const savedTheme = localStorage.getItem("theme") as Theme | null;
       if (savedTheme === "dark" || savedTheme === "light") {
         return savedTheme;
       }
       return document.documentElement.classList.contains("dark") ? "dark" : "light";
     }
-    return "light";
+    return "dark";
   });
 
   useEffect(() => {
