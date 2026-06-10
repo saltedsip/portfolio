@@ -122,6 +122,9 @@ Edit `src/data/portfolio.ts` to update everything:
 
    # Preview production build locally
    bun run preview
+
+   # Generate the Open Graph (OG) social sharing image
+   bun run generate-og
    ```
 
 ## 🚀 Deployment

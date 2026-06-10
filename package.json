@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "generate-sitemap": "node --experimental-strip-types scripts/generate-sitemap.ts",
+    "generate-og": "node --experimental-strip-types scripts/generate-og-image.ts",
     "indexnow": "node --experimental-strip-types scripts/indexnow-submit.ts",
     "postbuild": "node --experimental-strip-types scripts/inline-css.ts && node --experimental-strip-types scripts/generate-sitemap.ts"
   },
