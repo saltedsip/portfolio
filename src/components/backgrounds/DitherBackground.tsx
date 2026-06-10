@@ -258,6 +258,8 @@ function DitherBackground({
       className={`absolute inset-0 pointer-events-none z-0 ${isReady ? 'animate-fade-in' : 'opacity-0'} ${className}`}
       style={{
         animation: isReady ? 'fadeIn 1.5s ease-in forwards' : 'none',
+        maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)'
       }}
       aria-hidden="true"
     />

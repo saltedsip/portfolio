@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const API_KEY = process.env.INDEXNOW_API_KEY || "YOUR_API_KEY_HERE";
-const SITE_HOST = "www.talhahassan.me";
+const SITE_HOST = "www.talhakashif.com";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 // Read the generated sitemap to extract URLs

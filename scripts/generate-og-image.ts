@@ -38,8 +38,8 @@ const svgString = `
   <rect x="0" y="0" width="8" height="630" fill="#F85A3E" />
 
   <!-- Branding and Content -->
-  <!-- Name (Talha Hassan) -->
-  <text x="100" y="290" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="82" font-weight="bold" fill="#ffffff" letter-spacing="-0.03em">Talha Hassan</text>
+  <!-- Name (Talha Kashif Hassan) -->
+  <text x="100" y="290" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="82" font-weight="bold" fill="#ffffff" letter-spacing="-0.03em">Talha Kashif Hassan</text>
   
   <!-- Subtitle -->
   <text x="100" y="360" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#F85A3E" letter-spacing="0.05em">FULL STACK DEVELOPER</text>
@@ -48,7 +48,7 @@ const svgString = `
   <text x="100" y="440" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#8b949e">Building high-performance, responsive web applications for startups &amp; agencies.</text>
 
   <!-- URL -->
-  <text x="100" y="540" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#8b949e" letter-spacing="0.05em">talhahassan.me</text>
+  <text x="100" y="540" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#8b949e" letter-spacing="0.05em">talhakashif.com</text>
 </svg>
 `;
 

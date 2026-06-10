@@ -97,8 +97,8 @@ const HomePage = () => {
             </Suspense>
           )}
           
-          {/* Blur & Fade transition overlay at the bottom */}
-          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background/50 to-transparent backdrop-blur-[3px] pointer-events-none z-10" />
+          {/* Fade transition overlay at the bottom */}
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none z-10" />
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-center relative z-20">
             <HeroSection />

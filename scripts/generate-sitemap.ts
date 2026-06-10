@@ -20,7 +20,7 @@ const portfolioContent = fs.readFileSync(portfolioPath, "utf-8");
 
 // Extract siteConfig.url
 const urlMatch = portfolioContent.match(/url:\s*["']([^"']+)["']/);
-const siteUrl = urlMatch ? urlMatch[1] : "https://www.talhahassan.me";
+const siteUrl = urlMatch ? urlMatch[1] : "https://www.talhakashif.com";
 
 function extractProjectIds(): string[] {
     // This regex looks specifically for the 'projects' array section 

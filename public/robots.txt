@@ -13,5 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.talhahassan.me/sitemap.xml
+Sitemap: https://www.talhakashif.com/sitemap.xml
 

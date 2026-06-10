@@ -7,7 +7,7 @@ A modern, performant portfolio website built with React, TypeScript, TailwindCSS
 - **One-Pager Funnel Layout** with smooth anchor scrolling and active section tracking via IntersectionObserver
 - **Case Study Routing** with React Router for detailed project deep-dives
 - **Dark Theme** with deep navy background and vermillion (#F85A3E) accents
-- **Scoped Animated Background** with a custom dithered simplex-noise canvas overlay on the Hero section, smoothly dissolving into other sections via a frosted-glass blur fade
+- **Scoped Animated Background** with a custom dithered simplex-noise canvas overlay on the Hero section, smoothly dissolving into other sections via a linear gradient opacity mask
 - **Interactive Lead Capture Form** with client-side validation, success panel states, and Forminit API integration
 - **Fully Responsive** mobile-first design (320px to 4K)
 - **Centralized Config** — update all content inside `src/data/portfolio.ts`

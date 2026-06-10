@@ -34,12 +34,12 @@ export const siteConfig: SiteConfig = {
   title: "Talha Hassan - Full Stack Developer",
   description:
     "Full stack developer specializing in React, Next.js, and Node.js.",
-  url: "https://www.talhahassan.me",
-  ogImage: "https://www.talhahassan.me/og_image.png",
+  url: "https://www.talhakashif.com",
+  ogImage: "https://www.talhakashif.com/og_image.png",
   keywords: "full stack developer, react, nextjs, nodejs, freelance",
 };
 
-const emailAddress = ["talhahassan.me", "gmail.com"].join("@");
+const emailAddress = ["talhakashif.dev", "gmail.com"].join("@");
 
 // --------------------------------------------
 // PERSONAL INFO
