@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { Analytics } from "@vercel/analytics/react";
 import HomePage from "./pages/HomePage";
 
 // Lazy load non-critical pages
@@ -27,6 +28,7 @@ const App = () => (
         <Route path="*" element={<LazyRoute><NotFoundPage /></LazyRoute>} />
       </Routes>
     </BrowserRouter>
+    <Analytics />
   </HelmetProvider>
 );
 
