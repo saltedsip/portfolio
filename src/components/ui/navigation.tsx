@@ -1,5 +1,5 @@
 import { ArrowUp, Sun, Moon } from "lucide-react";
-import { personalInfo, navLinks, navSocialLinks } from "@/data/portfolio";
+import { navLinks, navSocialLinks } from "@/data/portfolio";
 import { useState, useCallback, useEffect, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";

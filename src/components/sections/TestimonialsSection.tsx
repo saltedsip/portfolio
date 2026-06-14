@@ -116,10 +116,10 @@ const TestimonialsSection = () => {
                 <img
                   src={current.image}
                   alt={current.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-12 h-12 rounded-full object-cover shrink-0"
                 />
               ) : (
-                <div className={`w-12 h-12 rounded-full ${getAvatarColor(current.name)} flex items-center justify-center text-white font-medium`}>
+                <div className={`w-12 h-12 rounded-full ${getAvatarColor(current.name)} flex items-center justify-center text-white font-medium shrink-0`}>
                   {getInitials(current.name)}
                 </div>
               )}

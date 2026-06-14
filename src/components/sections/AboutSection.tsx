@@ -20,7 +20,7 @@ const AboutSection = () => (
     {Object.keys(skills).length > 0 && (
       <div className="mb-16">
         <h3 className="text-xl font-semibold mb-6">Technical Skills</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(skills).map(([category, skillList]) => (
             <div key={category} className="bg-card border border-border rounded-2xl p-6">
               <h4 className="text-sm text-primary font-medium uppercase tracking-wide mb-4">{category}</h4>

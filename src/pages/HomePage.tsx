@@ -85,8 +85,8 @@ const HomePage = () => {
       <Header isScrolled={isScrolled} />
 
       <main className="relative z-10">
-        {/* Hero — screen height viewport with parent-relative dither background */}
-        <div id="home" className="relative w-full h-[100dvh] overflow-hidden">
+        {/* Hero — dynamic viewport height with parent-relative dither background */}
+        <div id="home" className="relative w-full min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-16">
           {showBackground && (
             <Suspense fallback={null}>
               <DitherBackground
@@ -100,7 +100,7 @@ const HomePage = () => {
           {/* Fade transition overlay at the bottom */}
           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none z-10" />
           
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-center relative z-20">
+          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 relative z-20">
             <HeroSection />
           </div>
         </div>
@@ -130,7 +130,7 @@ const HomePage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>{footerContent.copyright}</p>
             {navSocialLinks.length > 0 && (
-              <div className="flex gap-4">
+              <div className="flex gap-4 sm:pr-16 xl:pr-0">
                 {navSocialLinks.map((link) => (
                   <a
                     key={link.id}
