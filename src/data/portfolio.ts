@@ -421,6 +421,16 @@ export const testimonials: Testimonial[] = [
       "The Seller works fast, solved problems quickly, and was very understanding. Also demonstrated strong leadership skills and is an over-achiever. The pricing was better than competitors for similar service!",
     rating: 5,
   },
+  {
+    id: 9,
+    name: "Ezad Tozan",
+    role: "Founder",
+    company: "Tozan Design, Netherlands",
+    image: "",
+    content:
+      "Great work overall. Communication was clear, deadlines were respected, and feedback was implemented quickly. The website meets the requirements and the collaboration throughout the project was professional and efficient. I appreciate the flexibility and responsiveness during development and would be happy to work together again on future projects.",
+    rating: 5,
+  },
 ];
 
 // --------------------------------------------
