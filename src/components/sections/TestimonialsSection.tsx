@@ -100,7 +100,7 @@ const TestimonialsSection = () => {
               className={`text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed max-w-4xl transition-all duration-500 ease-out ${isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                 }`}
             >
-              "{current.content}"
+              {current.content}
             </blockquote>
           </div>
 
