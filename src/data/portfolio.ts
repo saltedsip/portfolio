@@ -431,6 +431,16 @@ export const testimonials: Testimonial[] = [
       "Great work overall. Communication was clear, deadlines were respected, and feedback was implemented quickly. The website meets the requirements and the collaboration throughout the project was professional and efficient. I appreciate the flexibility and responsiveness during development and would be happy to work together again on future projects.",
     rating: 5,
   },
+  {
+    id: 10,
+    name: "Tracy",
+    role: "Founder",
+    company: "Black Sheep Therapy, US",
+    image: "",
+    content:
+      "Really great experience! Very communicative and would hire again in a heartbeat. So happy with the work he has done.",
+    rating: 5,
+  },
 ];
 
 // --------------------------------------------
