@@ -434,7 +434,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 10,
     name: "Tracy",
-    role: "Founder",
+    role: "Owner",
     company: "Black Sheep Therapy, US",
     image: "",
     content:
