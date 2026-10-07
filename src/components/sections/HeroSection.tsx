@@ -1,14 +1,7 @@
-import { ArrowRight, Download, Briefcase, Star, Award } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { heroContent, personalInfo } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { memo } from "react";
-
-// Stats data with icons
-const stats = [
-  { value: "200+", label: "Projects Delivered", icon: <Briefcase className="w-5 h-5 md:w-6 md:h-6 text-primary" /> },
-  { value: "4.9/5", label: "Client Rating", icon: <Star className="w-5 h-5 md:w-6 md:h-6 text-primary" /> },
-  { value: "Level 2", label: "Fiverr Seller", icon: <Award className="w-5 h-5 md:w-6 md:h-6 text-primary" /> },
-];
 
 const Highlight = ({ children }: { children: React.ReactNode }) => (
   <span className="text-primary font-extrabold">
@@ -19,7 +12,7 @@ const Highlight = ({ children }: { children: React.ReactNode }) => (
 const HeroSection = () => (
   <section className="flex flex-col justify-center py-4">
     {/* Hero Content - Oska style */}
-    <div className="mb-8 md:mb-12">
+    <div>
       {/* Main Headline with professional highlight */}
       <FadeIn delay={100} direction="up">
         <h1 className="text-[2rem] sm:text-[3rem] md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]">
@@ -64,28 +57,6 @@ const HeroSection = () => (
         </div>
       </FadeIn>
     </div>
-
-    {/* Stats Section - Horizontal row on desktop, stacked on mobile */}
-    <FadeIn delay={700} direction="up">
-      <div className="flex flex-col md:flex-row md:items-stretch gap-4 md:gap-0 p-4 md:py-6 md:px-0 bg-card border border-border rounded-2xl">
-        {stats.map((stat, i) => (
-          <div
-            key={i}
-            className={`flex items-center gap-3 md:flex-1 md:justify-center md:px-6 ${i > 0 ? 'md:border-l md:border-border' : ''}`}
-          >
-            {/* Icon */}
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-              {stat.icon}
-            </div>
-            {/* Text */}
-            <div>
-              <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">{stat.value}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">{stat.label}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </FadeIn>
   </section>
 );
 

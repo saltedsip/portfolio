@@ -1,18 +1,41 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { projects, siteConfig } from "@/data/portfolio";
+import { projects } from "@/data/portfolio";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Layout from "@/components/Layout";
 import { SEO } from "@/components/SEO";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
+import { notFoundSeo, projectSeo } from "@/lib/seo";
+import { getProjectImages, preloadImage, whenIdle } from "@/lib/preload";
+import type { Components } from "react-markdown";
+
+const markdownComponents: Components = {
+  img: ({ node: _node, ...props }) => (
+    <img
+      {...props}
+      loading="lazy"
+      decoding="async"
+      className="w-full rounded-xl border border-border"
+    />
+  ),
+};
 
 const ProjectDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find(p => p.id === slug);
 
+  // On a direct visit, fetch the images further down the page in idle time
+  // (the hero is already requested eagerly below).
+  useEffect(() => {
+    if (!project) return;
+    return whenIdle(() => getProjectImages(project).forEach(preloadImage));
+  }, [project]);
+
   if (!project) {
     return (
       <Layout>
+        <SEO {...notFoundSeo()} />
         <div className="min-h-[60vh] flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-4">Project not found</h1>
           <Link
@@ -29,12 +52,7 @@ const ProjectDetailPage = () => {
 
   return (
     <Layout>
-      <SEO
-        title={project.title}
-        description={project.description}
-        image={project.image}
-        url={`${siteConfig.url}/projects/${project.id}`}
-      />
+      <SEO {...projectSeo(project)} />
       <article className="py-8">
         {/* Back link */}
         <Link
@@ -60,7 +78,7 @@ const ProjectDetailPage = () => {
 
         {/* Hero Image */}
         {project.image && (
-          <div className="rounded-3xl overflow-hidden mb-12 border border-border aspect-[16/9] max-h-[500px]">
+          <div className="rounded-3xl overflow-hidden mb-12 border border-border aspect-[16/9] w-full">
             <OptimizedImage
               src={project.image}
               alt={project.title}
@@ -77,7 +95,7 @@ const ProjectDetailPage = () => {
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
               <h2 className="text-xl font-bold mb-4">About this project</h2>
               <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed prose-p:my-3 prose-ul:my-2 prose-li:my-1">
-                <ReactMarkdown>
+                <ReactMarkdown components={markdownComponents}>
                   {project.longDescription || project.description}
                 </ReactMarkdown>
               </div>

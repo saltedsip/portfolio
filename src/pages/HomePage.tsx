@@ -1,5 +1,6 @@
 import { Header } from "@/components/ui/navigation";
 import { SEO } from "@/components/SEO";
+import { homeSeo } from "@/lib/seo";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -81,7 +82,7 @@ const HomePage = () => {
 
   return (
     <div className="app-container min-h-screen bg-background transition-colors duration-300 overflow-x-hidden relative">
-      <SEO />
+      <SEO {...homeSeo()} />
       <Header isScrolled={isScrolled} />
 
       <main className="relative z-10">
@@ -105,11 +106,6 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* About */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
-          <AboutSection />
-        </div>
-
         {/* Featured Projects */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
           <FeaturedProjects />
@@ -118,6 +114,11 @@ const HomePage = () => {
         {/* Testimonials */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <TestimonialsSection />
+        </div>
+
+        {/* About */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
+          <AboutSection />
         </div>
 
         {/* Contact */}

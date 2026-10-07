@@ -1,12 +1,34 @@
 import { ArrowUpRight } from "lucide-react";
 import { projects, projectsContent } from "@/data/portfolio";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
+import { preloadImage, preloadProject, whenIdle } from "@/lib/preload";
+
+const featured = projects.filter((p) => p.featured);
 
 const FeaturedProjects = () => {
-  const featured = projects.filter((p) => p.featured);
+  // Once the page has finished loading, fetch the card images in idle time so
+  // they are ready before the visitor scrolls down to them.
+  useEffect(() => {
+    let cancelIdle: (() => void) | undefined;
+    const warmCards = () => {
+      cancelIdle = whenIdle(() => {
+        featured.forEach((p) => p.image && preloadImage(p.image));
+      });
+    };
+
+    if (document.readyState === "complete") {
+      warmCards();
+    } else {
+      window.addEventListener("load", warmCards, { once: true });
+    }
+    return () => {
+      window.removeEventListener("load", warmCards);
+      cancelIdle?.();
+    };
+  }, []);
 
   return (
     <section id="work">
@@ -33,6 +55,9 @@ const FeaturedProjects = () => {
           <FadeIn key={project.id} delay={index * 150} direction="up">
             <Link
               to={`/projects/${project.id}`}
+              onMouseEnter={() => preloadProject(project)}
+              onFocus={() => preloadProject(project)}
+              onTouchStart={() => preloadProject(project)}
               className="group block bg-card border border-border rounded-3xl overflow-hidden hover:border-primary/50 transition-all"
             >
               <div className="flex flex-col md:flex-row">
@@ -43,8 +68,7 @@ const FeaturedProjects = () => {
                       src={project.image}
                       alt={project.title}
                       className="group-hover:scale-105 transition-transform duration-500"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      {...(index === 0 ? { fetchPriority: "high" as const } : {})}
+                      loading="lazy"
                     />
                   )}
                 </div>

@@ -26,6 +26,8 @@ import type {
 } from "@/types/portfolio";
 import visualbuilder from "../assets/projects/visualbuilder.webp";
 import tozan from "../assets/projects/tozan.webp";
+import boskamers from "../assets/projects/boskamers.webp";
+import boskamersConfigurator from "../assets/projects/boskamers-configurator.webp";
 
 // --------------------------------------------
 // SITE CONFIG
@@ -33,10 +35,10 @@ import tozan from "../assets/projects/tozan.webp";
 export const siteConfig: SiteConfig = {
   title: "Talha Hassan - Full Stack Developer",
   description:
-    "Full stack developer specializing in React, Next.js, and Node.js.",
+    "Full stack developer building fast, production-ready web apps with React, Next.js and Node.js. 200+ projects shipped for startups and agencies.",
   url: "https://www.talhakashif.com",
   ogImage: "https://www.talhakashif.com/og_image.png",
-  keywords: "full stack developer, react, nextjs, nodejs, freelance",
+  keywords: "full stack developer, react developer, next.js developer, node.js, typescript, web developer",
 };
 
 const emailAddress = ["talhakashif.dev", "gmail.com"].join("@");
@@ -104,15 +106,6 @@ export const contactLinks: ContactLink[] = [
   //   showInNav: true,
   //   showInContact: false,
   // },
-  {
-    id: "fiverr",
-    label: "Fiverr",
-    value: "View my profile",
-    icon: "fiverr",
-    href: "https://www.fiverr.com/kashif_h",
-    showInNav: false,
-    showInContact: true,
-  },
 ];
 
 // --------------------------------------------
@@ -120,8 +113,8 @@ export const contactLinks: ContactLink[] = [
 // --------------------------------------------
 export const navLinks: NavLink[] = [
   { label: "Home", href: "#home", isRoute: false },
-  { label: "About", href: "#about", isRoute: false },
   { label: "Work", href: "#work", isRoute: false },
+  { label: "About", href: "#about", isRoute: false },
   { label: "Contact", href: "#contact", isRoute: false },
 ];
 
@@ -189,7 +182,7 @@ export const experienceTitle = "Experience";
 export const workExperience: WorkExperience[] = [
   {
     id: 1,
-    company: "Independent Contracting (Fiverr)",
+    company: "Independent Contracting",
     title: "Full Stack Developer",
     period: "03.2017 – Present",
     isActive: true,
@@ -261,6 +254,54 @@ export const projectsContent: ProjectsContent = {
 
 export const projects: Project[] = [
   {
+    id: "boskamers",
+    title: "Boskamers",
+    description:
+      "An interactive estate explorer and sales platform for a woodland housing project near Eindhoven — cinematic video navigation, a 3D home configurator, and an admin portal for the sales team.",
+    longDescription: `Boskamers is the sales website for six small housing clusters set in woodland near Eindhoven. Instead of a static brochure, visitors explore the estate through cinematic, pre-rendered camera flights — from the estate overview, into a cluster, around it in a 360° view, and into a specific home with live availability, floor plans and interior photos. Behind it, an admin portal lets the sales team manage units, prices and enquiries without a developer.
+
+**Role:** Full-stack development · **Timeline:** June – October 2026
+
+**Key work:**
+
+- Cinematic, video-driven navigation. A custom engine built on two \`<video>\` elements switches between rendered camera paths with frame-accurate cuts and crossfades. It waits for the next clip's first frame to be composited before revealing it — no black frames, no flicker, no third-party player.
+- Pick-a-home on top of video. Each cluster's homes are traced as SVG outlines in the video's 1920×1080 space and overlaid on the footage. Hover or tap a building to open its live status, specs, zoomable floor plans and interior gallery.
+- Separate mobile and tablet experience. Small screens get a purpose-built flow of lightweight stills and short transition clips, and each device downloads only the assets it will actually show.
+- Admin portal. Revocable JWT sessions (\`jose\`), \`scrypt\`-hashed passwords and role checks on every mutating route. Staff manage unit status and prices, enquiries and users, and upload media to Cloudflare R2, with data in Cloudflare D1.
+- Bilingual (Dutch and English), with an interactive surroundings map, a sustainability section and a contact form that feeds the enquiries inbox.
+
+**3D home configurator**
+
+![Boskamers 3D home configurator](${boskamersConfigurator})
+
+- A standalone three.js app that loads the architect's FBX models directly. Buyers choose between two house types, four extension depths, two skylights and two timber finishes, with an itemised price that updates as they go.
+- Extension variants are generated from the supplied models — side walls and roof stretch while the sliding door, frame profiles and 35 cm wall thickness stay intact — and checked across every depth and skylight combination.
+- Neighbouring homes appear as simple white volumes, and a procedural woodland uses instanced rendering to stay fast on phones.
+- Buyers can compare against the base home, switch to a schematic floor plan, and export their design as a PNG or a PDF summary with prices. Fully local: no third-party requests, and the price calculator still works without WebGL.
+
+**Performance engineering**
+
+The site plays dozens of full-HD clips, so loading performance was core to the work.
+
+- Two-tier media cache. Clips stream into persistent Cache Storage and are held in memory as Blob URLs, with LRU eviction — revisits and transitions play instantly.
+- Accurate loading screen. Critical clips download first in priority order, then the remaining time prefetches what the visitor will most likely need next. Progress is based on bytes actually downloaded.
+- Prioritised prefetching. Clips the visitor is about to need, like the angle they're hovering over, skip ahead of a throttled background queue, and duplicate requests are merged into one download.
+- Edge delivery and asset pipeline. Media is served from Cloudflare R2 behind a CDN with immutable caching. Node scripts transcode video with ffmpeg, convert images to WebP with sharp, generate a typed video manifest and verify every asset exists on the CDN.
+
+**What I'd highlight**
+
+- A stutter-free video player on top of ordinary HTML video elements.
+- Treating bandwidth as part of the user experience: each device and each step of the journey gets its own prioritised download plan.
+- A complete product, not just a front end: public site, 3D tool and an authenticated admin backend.
+`,
+    image: boskamers,
+    ogImage: "/og/boskamers.jpg",
+    tags: ["NextJs", "Typescript", "Three.js", "Tailwind CSS", "Cloudflare"],
+    link: "https://www.boskamers.com/",
+    github: "",
+    featured: true,
+  },
+  {
     id: "visualbuilder",
     title: "Visual Builder",
     description:
@@ -277,6 +318,7 @@ export const projects: Project[] = [
 - Security by Design: All inputs and outputs are heavily sanitized using DOMPurify, custom URL scheme allowlists, and sandboxed iframes for embed codes.
 `,
     image: visualbuilder,
+    ogImage: "/og/visualbuilder.jpg",
     tags: ["React", "Typescript", "Tailwind CSS"],
     link: "https://visualbuilder-react.vercel.app/",
     github: "https://github.com/saltedsip/visualbuilder", // Add your repo link here if you have one!
@@ -306,6 +348,7 @@ Replaced the studio's Bricks-builder WordPress front end with a fully static Nex
 - Pre-generate AVIF alongside JPEG for the 5% of users on browsers that handle it.
 `,
     image: tozan,
+    ogImage: "/og/tozan.jpg",
     tags: ["NextJs", "Typescript", "Tailwind CSS"],
     link: "https://tozandesign.nl",
     github: "", // Add your repo link here if you have one!
@@ -408,7 +451,7 @@ export const testimonials: Testimonial[] = [
     company: "EdTech Platform, India",
     image: "",
     content:
-      "Excellent Work — my best experience on Fiverr so far! Easy and quick service. Great communication. Did what he said he would do. If you are considering working with this guy, give him a chance. You won't regret it!",
+      "Excellent Work! Easy and quick service. Great communication. Did what he said he would do. If you are considering working with this guy, give him a chance. You won't regret it!",
     rating: 5,
   },
   {

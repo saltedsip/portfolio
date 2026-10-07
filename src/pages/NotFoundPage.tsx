@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Home } from "lucide-react";
 import { memo } from "react";
 import { SEO } from "@/components/SEO";
+import { notFoundSeo } from "@/lib/seo";
 
 const NotFoundPage = () => (
     <>
-        <SEO title="404 - Page Not Found" description="The page you're looking for doesn't exist." />
+        <SEO {...notFoundSeo()} />
         <div className="min-h-screen bg-background flex items-center justify-center px-6">
             <div className="text-center max-w-md">
                 {/* Large 404 */}

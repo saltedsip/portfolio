@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import HomePage from "./pages/HomePage";
+import { loadProjectDetailPage } from "./lib/preload";
 
 // Lazy load non-critical pages
-const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const ProjectDetailPage = lazy(loadProjectDetailPage);
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // Simple loading fallback
