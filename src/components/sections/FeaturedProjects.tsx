@@ -8,6 +8,9 @@ import { preloadImage, preloadProject, whenIdle } from "@/lib/preload";
 
 const featured = projects.filter((p) => p.featured);
 
+// Card image width: half of the 976px content column on desktop, full width below md
+const CARD_IMAGE_SIZES = "(min-width: 1024px) 488px, (min-width: 768px) 50vw, 100vw";
+
 const FeaturedProjects = () => {
   // Once the page has finished loading, fetch the card images in idle time so
   // they are ready before the visitor scrolls down to them.
@@ -15,7 +18,7 @@ const FeaturedProjects = () => {
     let cancelIdle: (() => void) | undefined;
     const warmCards = () => {
       cancelIdle = whenIdle(() => {
-        featured.forEach((p) => p.image && preloadImage(p.image));
+        featured.forEach((p) => p.image && preloadImage(p.image, p.imageSrcSet, CARD_IMAGE_SIZES));
       });
     };
 
@@ -66,6 +69,8 @@ const FeaturedProjects = () => {
                   {project.image && (
                     <OptimizedImage
                       src={project.image}
+                      srcSet={project.imageSrcSet}
+                      sizes={project.imageSrcSet ? CARD_IMAGE_SIZES : undefined}
                       alt={project.title}
                       className="group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"

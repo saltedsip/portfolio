@@ -29,7 +29,7 @@ const ProjectDetailPage = () => {
   // (the hero is already requested eagerly below).
   useEffect(() => {
     if (!project) return;
-    return whenIdle(() => getProjectImages(project).forEach(preloadImage));
+    return whenIdle(() => getProjectImages(project).forEach((src) => preloadImage(src)));
   }, [project]);
 
   if (!project) {

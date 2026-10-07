@@ -58,7 +58,7 @@ const AboutSection = () => (
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h4 className="font-semibold">{exp.title}</h4>
                     {exp.isActive && (
-                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Current</span>
+                      <span className="text-xs bg-primary/10 text-orange-700 dark:text-primary px-2 py-0.5 rounded-full">Current</span>
                     )}
                   </div>
                   <p className="text-sm text-primary mb-2">{exp.company} · {exp.period}</p>

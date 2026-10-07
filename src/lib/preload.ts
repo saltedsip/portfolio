@@ -7,15 +7,21 @@ export const loadProjectDetailPage = () => import("@/pages/ProjectDetailPage");
 const preloaded = new Map<string, Promise<void>>();
 
 // Downloads and decodes an image once, so later <img> tags paint it instantly.
-export function preloadImage(src: string): Promise<void> {
-  const existing = preloaded.get(src);
+// Pass the same srcSet/sizes as the <img> so the browser picks the same file.
+export function preloadImage(src: string, srcSet?: string, sizes?: string): Promise<void> {
+  const key = srcSet ? `${srcSet}|${sizes ?? ""}` : src;
+  const existing = preloaded.get(key);
   if (existing) return existing;
 
   const img = new Image();
   img.decoding = "async";
+  if (srcSet) {
+    img.srcset = srcSet;
+    if (sizes) img.sizes = sizes;
+  }
   img.src = src;
   const promise = img.decode().catch(() => undefined);
-  preloaded.set(src, promise);
+  preloaded.set(key, promise);
   return promise;
 }
 
@@ -33,7 +39,7 @@ export function getProjectImages(project: Project): string[] {
 // Warms everything the project detail page needs: its JS chunk and its images.
 export function preloadProject(project: Project) {
   loadProjectDetailPage().catch(() => undefined);
-  getProjectImages(project).forEach(preloadImage);
+  getProjectImages(project).forEach((src) => preloadImage(src));
 }
 
 // Runs a task once the browser is idle, falling back to a timeout where

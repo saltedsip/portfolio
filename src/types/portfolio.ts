@@ -93,6 +93,8 @@ export interface Project {
     description: string;
     longDescription: string;
     image: string;
+    // Smaller copies of `image` for cards (see src/lib/responsiveImages.ts)
+    imageSrcSet?: string;
     // Social preview image (1200x630 JPEG in public/og/). Falls back to siteConfig.ogImage.
     ogImage?: string;
     tags: string[];

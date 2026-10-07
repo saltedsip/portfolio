@@ -24,6 +24,7 @@ import type {
   Testimonial,
   FooterContent,
 } from "@/types/portfolio";
+import { srcSetFor } from "@/lib/responsiveImages";
 import visualbuilder from "../assets/projects/visualbuilder.webp";
 import tozan from "../assets/projects/tozan.webp";
 import boskamers from "../assets/projects/boskamers.webp";
@@ -295,6 +296,7 @@ The site plays dozens of full-HD clips, so loading performance was core to the w
 - A complete product, not just a front end: public site, 3D tool and an authenticated admin backend.
 `,
     image: boskamers,
+    imageSrcSet: srcSetFor("boskamers"),
     ogImage: "/og/boskamers.jpg",
     tags: ["NextJs", "Typescript", "Three.js", "Tailwind CSS", "Cloudflare"],
     link: "https://www.boskamers.com/",
@@ -318,6 +320,7 @@ The site plays dozens of full-HD clips, so loading performance was core to the w
 - Security by Design: All inputs and outputs are heavily sanitized using DOMPurify, custom URL scheme allowlists, and sandboxed iframes for embed codes.
 `,
     image: visualbuilder,
+    imageSrcSet: srcSetFor("visualbuilder"),
     ogImage: "/og/visualbuilder.jpg",
     tags: ["React", "Typescript", "Tailwind CSS"],
     link: "https://visualbuilder-react.vercel.app/",
@@ -348,6 +351,7 @@ Replaced the studio's Bricks-builder WordPress front end with a fully static Nex
 - Pre-generate AVIF alongside JPEG for the 5% of users on browsers that handle it.
 `,
     image: tozan,
+    imageSrcSet: srcSetFor("tozan"),
     ogImage: "/og/tozan.jpg",
     tags: ["NextJs", "Typescript", "Tailwind CSS"],
     link: "https://tozandesign.nl",
