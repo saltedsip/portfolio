@@ -197,9 +197,13 @@ function DitherBackground({
       const colorG = color.g;
       const colorB = color.b;
 
-      // Make animation a subtle animated texture in light mode (~8.6% opacity) and ~10% in dark mode
+      // Dark mode: ~10% opacity, color darkened by intensity.
+      // Light mode: darkening the color reads as grey-beige on white, so keep the
+      // full orange and let intensity drive opacity instead (~8–21%).
       const isDark = document.documentElement.classList.contains("dark");
-      const alpha = isDark ? 26 : 22; // ~10% opacity for dark mode, ~8.6% opacity for light mode
+      const DARK_ALPHA = 26;
+      const LIGHT_ALPHA_MIN = 20;
+      const LIGHT_ALPHA_RANGE = 34;
 
       for (let y = 0; y < h; y++) {
         const yOffset = y * w * 4;
@@ -213,10 +217,17 @@ function DitherBackground({
           if (brightness > threshold) {
             const intensity = brightness < 1 ? brightness : 1;
             const idx = yOffset + (x << 2);
-            data[idx] = (colorR * intensity) | 0;
-            data[idx + 1] = (colorG * intensity) | 0;
-            data[idx + 2] = (colorB * intensity) | 0;
-            data[idx + 3] = alpha;
+            if (isDark) {
+              data[idx] = (colorR * intensity) | 0;
+              data[idx + 1] = (colorG * intensity) | 0;
+              data[idx + 2] = (colorB * intensity) | 0;
+              data[idx + 3] = DARK_ALPHA;
+            } else {
+              data[idx] = colorR;
+              data[idx + 1] = colorG;
+              data[idx + 2] = colorB;
+              data[idx + 3] = (LIGHT_ALPHA_MIN + LIGHT_ALPHA_RANGE * intensity) | 0;
+            }
           }
         }
       }
