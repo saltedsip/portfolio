@@ -16,13 +16,14 @@ const getInitials = (name: string) => {
 
 // Generate a consistent color based on name
 const getAvatarColor = (name: string) => {
+  // Deep shades so white initials pass WCAG AA contrast (≥ 4.5:1)
   const colors = [
-    "bg-rose-500",
-    "bg-amber-500",
-    "bg-cyan-500",
-    "bg-violet-500",
-    "bg-pink-500",
-    "bg-primary",
+    "bg-rose-700",
+    "bg-amber-700",
+    "bg-cyan-700",
+    "bg-violet-600",
+    "bg-pink-700",
+    "bg-orange-700",
   ];
   const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return colors[hash % colors.length];
@@ -152,27 +153,32 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Progress dots with smooth CSS animation */}
-          <div className="flex items-center justify-center gap-2 mt-8">
+          {/* Each button is a 24px-tall tap target around the small visible dot */}
+          <div className="flex items-center justify-center mt-6">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`h-2 rounded-full transition-all duration-300 relative overflow-hidden ${i === currentIndex ? "bg-border w-8" : "bg-border hover:bg-muted-foreground w-2"
-                  }`}
+                className="group p-2"
                 aria-label={`Go to testimonial ${i + 1}`}
               >
-                {/* Smooth CSS progress animation for active dot */}
-                {i === currentIndex ? (
-                  isPaused ? (
-                    <span className="absolute inset-y-0 left-0 bg-primary rounded-full w-1/2" />
-                  ) : (
-                    <span
-                      key={`progress-${currentIndex}-${animationKey}`}
-                      className="absolute inset-y-0 left-0 bg-primary rounded-full"
-                      style={{ animation: `progressFill ${AUTOPLAY_INTERVAL}ms linear forwards` }}
-                    />
-                  )
-                ) : null}
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 relative overflow-hidden ${i === currentIndex ? "bg-border w-8" : "bg-border group-hover:bg-muted-foreground w-2"
+                    }`}
+                >
+                  {/* Smooth CSS progress animation for active dot */}
+                  {i === currentIndex ? (
+                    isPaused ? (
+                      <span className="absolute inset-y-0 left-0 bg-primary rounded-full w-1/2" />
+                    ) : (
+                      <span
+                        key={`progress-${currentIndex}-${animationKey}`}
+                        className="absolute inset-y-0 left-0 bg-primary rounded-full"
+                        style={{ animation: `progressFill ${AUTOPLAY_INTERVAL}ms linear forwards` }}
+                      />
+                    )
+                  ) : null}
+                </span>
               </button>
             ))}
           </div>

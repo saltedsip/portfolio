@@ -8,8 +8,8 @@ import { preloadImage, preloadProject, whenIdle } from "@/lib/preload";
 
 const featured = projects.filter((p) => p.featured);
 
-// Card image width: half of the 976px content column on desktop, full width below md
-const CARD_IMAGE_SIZES = "(min-width: 1024px) 488px, (min-width: 768px) 50vw, 100vw";
+// Card image width: half of the content column from md up, full column width below
+const CARD_IMAGE_SIZES = "(min-width: 1024px) 488px, (min-width: 768px) calc(50vw - 24px), calc(100vw - 32px)";
 
 const FeaturedProjects = () => {
   // Once the page has finished loading, fetch the card images in idle time so
